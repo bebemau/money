@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MoneyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBill">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" />
+          <Property Name="EstPaidDate" Type="datetime" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="WithdrawalID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblBuyer">
+          <Key>
+            <PropertyRef Name="BuyerID" />
+          </Key>
+          <Property Name="BuyerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+          <Property Name="StreetAddress1" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetAddress2" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConfirmedAddress" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEbay">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="StartingPrice" Type="float" />
+          <Property Name="DatePosted" Type="datetime" />
+          <Property Name="DateEnded" Type="datetime" />
+          <Property Name="SellingPrice" Type="float" />
+          <Property Name="Postage" Type="float" />
+          <Property Name="Insurance" Type="float" />
+          <Property Name="Buyer" Type="int" />
+          <Property Name="DatePaid" Type="datetime" />
+          <Property Name="PaymentType" Type="int" />
+          <Property Name="PostagePaid" Type="float" />
+          <Property Name="InsurancePaid" Type="float" />
+          <Property Name="PostFee" Type="float" />
+          <Property Name="FinalValueFee" Type="float" />
+          <Property Name="DatePaidPostFee" Type="datetime" />
+          <Property Name="DatePaidFVFee" Type="datetime" />
+          <Property Name="DateMailed" Type="datetime" />
+          <Property Name="DeliveryConfirmation" Type="nvarchar" MaxLength="25" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="MiscFees" Type="float" />
+          <Property Name="DateNPB" Type="datetime" />
+          <Property Name="DateFVFC" Type="datetime" />
+          <Property Name="RefundAmount" Type="float" />
+          <Property Name="DateRefundPaid" Type="datetime" />
+          <Property Name="RefundTransactionID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="TransferTo" Type="int" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="TransferAmount" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="int" />
+          <Property Name="ScheduledTransfer" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPaymentDetail">
+          <Key>
+            <PropertyRef Name="PaymentDetailID" />
+          </Key>
+          <Property Name="PaymentDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="TransactionID" Type="int" />
+          <Property Name="PaymentAmount" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblPaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeID" />
+          </Key>
+          <Property Name="PaymentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="TransactionType" Type="smallint" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="CheckNumber" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="PaidCC" Type="bit" Nullable="false" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="DatePosted" Type="datetime" />
+          <Property Name="NotMyMoney" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="float" />
+          <Property Name="ForeignTransaction" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsBank" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="DisplayBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DisplayBills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VendorID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DisplayPaymentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PaymentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DisplayPayments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PaymentID" Type="int" Mode="In" />
+          <Parameter Name="BankID" Type="int" Mode="In" />
+          <Parameter Name="VendorID" Type="int" Mode="In" />
+          <Parameter Name="PaymentAmount" Type="float" Mode="In" />
+          <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="DisplayTransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="BankID" Type="int" Mode="In" />
+          <Parameter Name="VendorID" Type="int" Mode="In" />
+          <Parameter Name="AmountFrom" Type="float" Mode="In" />
+          <Parameter Name="AmountTo" Type="float" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="CategoryID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MoneyModelStoreContainer">
+          <EntitySet Name="tblBill" EntityType="Self.tblBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuyer" EntityType="Self.tblBuyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEbay" EntityType="Self.tblEbay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentDetail" EntityType="Self.tblPaymentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentType" EntityType="Self.tblPaymentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVendor" EntityType="Self.tblVendor" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MoneyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBill">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="EstPaidDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WithdrawalID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblBuyer">
+          <Key>
+            <PropertyRef Name="BuyerID" />
+          </Key>
+          <Property Name="BuyerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmedAddress" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblEbay">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartingPrice" Type="Double" />
+          <Property Name="DatePosted" Type="DateTime" Precision="3" />
+          <Property Name="DateEnded" Type="DateTime" Precision="3" />
+          <Property Name="SellingPrice" Type="Double" />
+          <Property Name="Postage" Type="Double" />
+          <Property Name="Insurance" Type="Double" />
+          <Property Name="Buyer" Type="Int32" />
+          <Property Name="DatePaid" Type="DateTime" Precision="3" />
+          <Property Name="PaymentType" Type="Int32" />
+          <Property Name="PostagePaid" Type="Double" />
+          <Property Name="InsurancePaid" Type="Double" />
+          <Property Name="PostFee" Type="Double" />
+          <Property Name="FinalValueFee" Type="Double" />
+          <Property Name="DatePaidPostFee" Type="DateTime" Precision="3" />
+          <Property Name="DatePaidFVFee" Type="DateTime" Precision="3" />
+          <Property Name="DateMailed" Type="DateTime" Precision="3" />
+          <Property Name="DeliveryConfirmation" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="MiscFees" Type="Double" />
+          <Property Name="DateNPB" Type="DateTime" Precision="3" />
+          <Property Name="DateFVFC" Type="DateTime" Precision="3" />
+          <Property Name="RefundAmount" Type="Double" />
+          <Property Name="DateRefundPaid" Type="DateTime" Precision="3" />
+          <Property Name="RefundTransactionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="TransferTo" Type="Int32" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="TransferAmount" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="ScheduledTransfer" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPaymentDetail">
+          <Key>
+            <PropertyRef Name="PaymentDetailID" />
+          </Key>
+          <Property Name="PaymentDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="TransactionID" Type="Int32" />
+          <Property Name="PaymentAmount" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeID" />
+          </Key>
+          <Property Name="PaymentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="TransactionType" Type="Int16" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="CheckNumber" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PaidCC" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="DatePosted" Type="DateTime" Precision="3" />
+          <Property Name="NotMyMoney" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Double" />
+          <Property Name="ForeignTransaction" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="VendorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsBank" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MoneyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBills" EntityType="Self.tblBill" />
+          <EntitySet Name="tblBuyers" EntityType="Self.tblBuyer" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblEbays" EntityType="Self.tblEbay" />
+          <EntitySet Name="tblPayments" EntityType="Self.tblPayment" />
+          <EntitySet Name="tblPaymentDetails" EntityType="Self.tblPaymentDetail" />
+          <EntitySet Name="tblPaymentTypes" EntityType="Self.tblPaymentType" />
+          <EntitySet Name="tblTransactions" EntityType="Self.tblTransaction" />
+          <EntitySet Name="tblVendors" EntityType="Self.tblVendor" />
+          <FunctionImport Name="DisplayTransactions" ReturnType="Collection(MoneyModel.DisplayTransactions_Result)">
+            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="BankID" Mode="In" Type="Int32" />
+            <Parameter Name="VendorID" Mode="In" Type="Int32" />
+            <Parameter Name="AmountFrom" Mode="In" Type="Double" />
+            <Parameter Name="AmountTo" Mode="In" Type="Double" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="CategoryID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DisplayBalance" ReturnType="Collection(Double)" />
+          <FunctionImport Name="DisplayBills" ReturnType="Collection(MoneyModel.DisplayBills_Result)">
+          <Parameter Name="VendorID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DisplayPaymentDetails" ReturnType="Collection(MoneyModel.DisplayPaymentDetails_Result)">
+          <Parameter Name="PaymentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DisplayPayments" ReturnType="Collection(MoneyModel.DisplayPayments_Result)">
+            <Parameter Name="PaymentID" Mode="In" Type="Int32" />
+            <Parameter Name="BankID" Mode="In" Type="Int32" />
+            <Parameter Name="VendorID" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentAmount" Mode="In" Type="Double" />
+            <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="DisplayTransactions_Result">
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="BankID" Nullable="true" />
+          <Property Type="Int32" Name="VendorID" Nullable="true" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="Int16" Name="TransactionType" Nullable="true" />
+          <Property Type="DateTime" Name="ClosedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CheckNumber" Nullable="true" />
+          <Property Type="Int32" Name="PaymentID" Nullable="true" />
+          <Property Type="Int32" Name="CategoryID" Nullable="true" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ScheduledTransfer" Nullable="true" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="PaidCC" Nullable="false" />
+          <Property Type="Double" Name="Tax" Nullable="true" />
+          <Property Type="Boolean" Name="ForeignTransaction" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DisplayBills_Result">
+          <Property Type="Int32" Name="BillID" Nullable="false" />
+          <Property Type="Int32" Name="VendorID" Nullable="false" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DueDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Amount" Nullable="false" />
+          <Property Type="Int32" Name="CategoryID" Nullable="true" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="PaidDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CheckNumber" Nullable="true" />
+          <Property Type="DateTime" Name="EstPaidDate" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="PaidAmount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="DisplayPaymentDetails_Result">
+          <Property Type="Int32" Name="PaymentID" Nullable="true" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="BankID" Nullable="true" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CCBankID" Nullable="true" />
+          <Property Type="String" Name="CCBankName" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="PaymentAmount" Nullable="true" />
+          <Property Type="String" Name="PaymentDescription" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="VendorID" Nullable="true" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
+          <Property Type="Int16" Name="TransactionType" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="String" Name="TransactionDescription" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="PaymentDetailID" Nullable="false" />
+          <Property Type="Int32" Name="TransactionID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="DisplayPayments_Result">
+          <Property Type="Int32" Name="PaymentID" Nullable="false" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="BankID" Nullable="true" />
+          <Property Type="Int32" Name="CCBank" Nullable="true" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CCBankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentDescription" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="TransferAmount" Nullable="true" />
+          <Property Type="Int32" Name="TransactionID" Nullable="true" />
+          <Property Type="Int32" Name="BillID" Nullable="true" />
+          <Property Type="Int32" Name="Type" Nullable="true" />
+          <Property Type="Boolean" Name="ScheduledTransfer" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MoneyModelStoreContainer" CdmEntityContainer="MoneyEntities">
+          <EntitySetMapping Name="tblBills">
+            <EntityTypeMapping TypeName="MoneyModel.tblBill">
+              <MappingFragment StoreEntitySet="tblBill">
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="EstPaidDate" ColumnName="EstPaidDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WithdrawalID" ColumnName="WithdrawalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuyers">
+            <EntityTypeMapping TypeName="MoneyModel.tblBuyer">
+              <MappingFragment StoreEntitySet="tblBuyer">
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="StreetAddress1" ColumnName="StreetAddress1" />
+                <ScalarProperty Name="StreetAddress2" ColumnName="StreetAddress2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ConfirmedAddress" ColumnName="ConfirmedAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="MoneyModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEbays">
+            <EntityTypeMapping TypeName="MoneyModel.tblEbay">
+              <MappingFragment StoreEntitySet="tblEbay">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartingPrice" ColumnName="StartingPrice" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateEnded" ColumnName="DateEnded" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="Postage" ColumnName="Postage" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+                <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="PostagePaid" ColumnName="PostagePaid" />
+                <ScalarProperty Name="InsurancePaid" ColumnName="InsurancePaid" />
+                <ScalarProperty Name="PostFee" ColumnName="PostFee" />
+                <ScalarProperty Name="FinalValueFee" ColumnName="FinalValueFee" />
+                <ScalarProperty Name="DatePaidPostFee" ColumnName="DatePaidPostFee" />
+                <ScalarProperty Name="DatePaidFVFee" ColumnName="DatePaidFVFee" />
+                <ScalarProperty Name="DateMailed" ColumnName="DateMailed" />
+                <ScalarProperty Name="DeliveryConfirmation" ColumnName="DeliveryConfirmation" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="MiscFees" ColumnName="MiscFees" />
+                <ScalarProperty Name="DateNPB" ColumnName="DateNPB" />
+                <ScalarProperty Name="DateFVFC" ColumnName="DateFVFC" />
+                <ScalarProperty Name="RefundAmount" ColumnName="RefundAmount" />
+                <ScalarProperty Name="DateRefundPaid" ColumnName="DateRefundPaid" />
+                <ScalarProperty Name="RefundTransactionID" ColumnName="RefundTransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayments">
+            <EntityTypeMapping TypeName="MoneyModel.tblPayment">
+              <MappingFragment StoreEntitySet="tblPayment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="TransferTo" ColumnName="TransferTo" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="TransferAmount" ColumnName="TransferAmount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ScheduledTransfer" ColumnName="ScheduledTransfer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentDetails">
+            <EntityTypeMapping TypeName="MoneyModel.tblPaymentDetail">
+              <MappingFragment StoreEntitySet="tblPaymentDetail">
+                <ScalarProperty Name="PaymentDetailID" ColumnName="PaymentDetailID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentTypes">
+            <EntityTypeMapping TypeName="MoneyModel.tblPaymentType">
+              <MappingFragment StoreEntitySet="tblPaymentType">
+                <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransactions">
+            <EntityTypeMapping TypeName="MoneyModel.tblTransaction">
+              <MappingFragment StoreEntitySet="tblTransaction">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CheckNumber" ColumnName="CheckNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PaidCC" ColumnName="PaidCC" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="NotMyMoney" ColumnName="NotMyMoney" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="ForeignTransaction" ColumnName="ForeignTransaction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendors">
+            <EntityTypeMapping TypeName="MoneyModel.tblVendor">
+              <MappingFragment StoreEntitySet="tblVendor">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="IsBank" ColumnName="IsBank" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DisplayTransactions" FunctionName="MoneyModel.Store.DisplayTransactions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoneyModel.DisplayTransactions_Result">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="CheckNumber" ColumnName="CheckNumber" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ScheduledTransfer" ColumnName="ScheduledTransfer" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="PaidCC" ColumnName="PaidCC" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="ForeignTransaction" ColumnName="ForeignTransaction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayBalance" FunctionName="MoneyModel.Store.DisplayBalance" />
+          <FunctionImportMapping FunctionImportName="DisplayBills" FunctionName="MoneyModel.Store.DisplayBills">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoneyModel.DisplayBills_Result">
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CheckNumber" ColumnName="CheckNumber" />
+                <ScalarProperty Name="EstPaidDate" ColumnName="EstPaidDate" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayPaymentDetails" FunctionName="MoneyModel.Store.DisplayPaymentDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoneyModel.DisplayPaymentDetails_Result">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CCBankID" ColumnName="CCBankID" />
+                <ScalarProperty Name="CCBankName" ColumnName="CCBankName" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="PaymentDescription" ColumnName="PaymentDescription" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionDescription" ColumnName="TransactionDescription" />
+                <ScalarProperty Name="PaymentDetailID" ColumnName="PaymentDetailID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayPayments" FunctionName="MoneyModel.Store.DisplayPayments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoneyModel.DisplayPayments_Result">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="CCBank" ColumnName="CCBank" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CCBankName" ColumnName="CCBankName" />
+                <ScalarProperty Name="PaymentDescription" ColumnName="PaymentDescription" />
+                <ScalarProperty Name="TransferAmount" ColumnName="TransferAmount" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ScheduledTransfer" ColumnName="ScheduledTransfer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
