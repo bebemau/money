@@ -36,6 +36,7 @@ namespace MoneyData
                 return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentDate is not in valid format", null, null);
 
             var result = moneyContext.DisplayPayments(paymentIDNew, bankIDNew, vendorIDNew, paymentAmountNew, paymentDateNew);
+
             if (withDetailsNew)
                 return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>(string.Empty, result.ToList(), null);
             else
@@ -45,33 +46,57 @@ namespace MoneyData
             }
         }
 
-        public string AddPayment(tblPayment input, List<tblPaymentDetail> details)
+        public string AddUpdatePayment(string bankID, string transferTo, string paymentDate, string paymentAmount, List<MoneyData.tblPaymentDetail> details, string description ="")
         {
-            moneyContext.tblPayments.Add(input);
-            details.ForEach(a => moneyContext.tblPaymentDetails.Add(a));
+            int bankIDNew;
+            int transferToNew;
+            DateTime paymentDateNew;
+            double paymentAmountNew;
+
+            if (!int.TryParse(bankID, out bankIDNew))
+                return "BankID must be provided and in valid format.";
+            else if (!int.TryParse(transferTo, out transferToNew))
+                return "TransferTo must be provided and in valid format.";
+            else if (!DateTime.TryParse(paymentDate, out paymentDateNew))
+                return "PaymentDate must be provided and in valid format.";
+            else if (!double.TryParse(paymentAmount, out paymentAmountNew))
+                return "PaymentAmount must be provided and in valid format.";
+
+            var payment = new tblPayment { BankID = bankIDNew, Description = description, PaymentDate = paymentDateNew, TransferAmount = paymentAmountNew, TransferTo = transferToNew };
+            moneyContext.tblPayments.Add(payment);
+            moneyContext.SaveChanges();
+            var paymentID = payment.PaymentID;
+
+            var oldDetails = moneyContext.tblPaymentDetails.Where(a => a.PaymentID == paymentID);
+            moneyContext.tblPaymentDetails.RemoveRange(oldDetails);
+
+            var newDetails = details.Select(
+                s => new MoneyData.tblPaymentDetail{ PaymentID = paymentID, Description = s.Description, PaymentAmount = s.PaymentAmount, TransactionID = s.TransactionID });
+
+            moneyContext.tblPaymentDetails.AddRange(newDetails);
             moneyContext.SaveChanges();
 
             return string.Empty;
         }
 
-        public string UpdatePayment(tblPayment input)
-        {
-            var result = moneyContext.tblPayments.SingleOrDefault(b => b.PaymentID == input.PaymentID);
-            if (result != null)
-            {
-                result.BankID = input.BankID;
-                result.Description = input.Description;
-                result.PaymentDate = input.PaymentDate;
-                result.ScheduledTransfer = input.ScheduledTransfer;
-                result.TransferAmount = input.TransferAmount;
-                result.TransferTo = input.TransferTo;
-                result.Type = input.Type;
-                moneyContext.SaveChanges();
-                return string.Empty;
-            }
-            else
-                return "Payment does not exist.";
-        }
+        //public string UpdatePayment(tblPayment input)
+        //{
+        //    var result = moneyContext.tblPayments.SingleOrDefault(b => b.PaymentID == input.PaymentID);
+        //    if (result != null)
+        //    {
+        //        result.BankID = input.BankID;
+        //        result.Description = input.Description;
+        //        result.PaymentDate = input.PaymentDate;
+        //        result.ScheduledTransfer = input.ScheduledTransfer;
+        //        result.TransferAmount = input.TransferAmount;
+        //        result.TransferTo = input.TransferTo;
+        //        result.Type = input.Type;
+        //        moneyContext.SaveChanges();
+        //        return string.Empty;
+        //    }
+        //    else
+        //        return "Payment does not exist.";
+        //}
 
         public string DeletePayment(int paymentID)
         {
