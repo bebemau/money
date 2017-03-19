@@ -37,43 +37,6 @@ namespace MoneyData
         public virtual DbSet<tblTransaction> tblTransactions { get; set; }
         public virtual DbSet<tblVendor> tblVendors { get; set; }
     
-        public virtual ObjectResult<DisplayTransactions_Result> DisplayTransactions(Nullable<System.DateTime> dateFrom, Nullable<System.DateTime> dateTo, Nullable<int> bankID, Nullable<int> vendorID, Nullable<double> amountFrom, Nullable<double> amountTo, string description, Nullable<int> categoryID)
-        {
-            var dateFromParameter = dateFrom.HasValue ?
-                new ObjectParameter("DateFrom", dateFrom) :
-                new ObjectParameter("DateFrom", typeof(System.DateTime));
-    
-            var dateToParameter = dateTo.HasValue ?
-                new ObjectParameter("DateTo", dateTo) :
-                new ObjectParameter("DateTo", typeof(System.DateTime));
-    
-            var bankIDParameter = bankID.HasValue ?
-                new ObjectParameter("BankID", bankID) :
-                new ObjectParameter("BankID", typeof(int));
-    
-            var vendorIDParameter = vendorID.HasValue ?
-                new ObjectParameter("VendorID", vendorID) :
-                new ObjectParameter("VendorID", typeof(int));
-    
-            var amountFromParameter = amountFrom.HasValue ?
-                new ObjectParameter("AmountFrom", amountFrom) :
-                new ObjectParameter("AmountFrom", typeof(double));
-    
-            var amountToParameter = amountTo.HasValue ?
-                new ObjectParameter("AmountTo", amountTo) :
-                new ObjectParameter("AmountTo", typeof(double));
-    
-            var descriptionParameter = description != null ?
-                new ObjectParameter("Description", description) :
-                new ObjectParameter("Description", typeof(string));
-    
-            var categoryIDParameter = categoryID.HasValue ?
-                new ObjectParameter("CategoryID", categoryID) :
-                new ObjectParameter("CategoryID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayTransactions_Result>("DisplayTransactions", dateFromParameter, dateToParameter, bankIDParameter, vendorIDParameter, amountFromParameter, amountToParameter, descriptionParameter, categoryIDParameter);
-        }
-    
         public virtual ObjectResult<Nullable<double>> DisplayBalance()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("DisplayBalance");
@@ -120,6 +83,47 @@ namespace MoneyData
                 new ObjectParameter("PaymentDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayPayments_Result>("DisplayPayments", paymentIDParameter, bankIDParameter, vendorIDParameter, paymentAmountParameter, paymentDateParameter);
+        }
+    
+        public virtual ObjectResult<DisplayTransactions_Result> DisplayTransactions(Nullable<int> transactionID, Nullable<System.DateTime> dateFrom, Nullable<System.DateTime> dateTo, Nullable<int> bankID, Nullable<int> vendorID, Nullable<double> amountFrom, Nullable<double> amountTo, string description, Nullable<int> categoryID)
+        {
+            var transactionIDParameter = transactionID.HasValue ?
+                new ObjectParameter("TransactionID", transactionID) :
+                new ObjectParameter("TransactionID", typeof(int));
+    
+            var dateFromParameter = dateFrom.HasValue ?
+                new ObjectParameter("DateFrom", dateFrom) :
+                new ObjectParameter("DateFrom", typeof(System.DateTime));
+    
+            var dateToParameter = dateTo.HasValue ?
+                new ObjectParameter("DateTo", dateTo) :
+                new ObjectParameter("DateTo", typeof(System.DateTime));
+    
+            var bankIDParameter = bankID.HasValue ?
+                new ObjectParameter("BankID", bankID) :
+                new ObjectParameter("BankID", typeof(int));
+    
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(int));
+    
+            var amountFromParameter = amountFrom.HasValue ?
+                new ObjectParameter("AmountFrom", amountFrom) :
+                new ObjectParameter("AmountFrom", typeof(double));
+    
+            var amountToParameter = amountTo.HasValue ?
+                new ObjectParameter("AmountTo", amountTo) :
+                new ObjectParameter("AmountTo", typeof(double));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("CategoryID", categoryID) :
+                new ObjectParameter("CategoryID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayTransactions_Result>("DisplayTransactions", transactionIDParameter, dateFromParameter, dateToParameter, bankIDParameter, vendorIDParameter, amountFromParameter, amountToParameter, descriptionParameter, categoryIDParameter);
         }
     }
 }

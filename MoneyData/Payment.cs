@@ -46,15 +46,18 @@ namespace MoneyData
             }
         }
 
-        public string AddUpdatePayment(string bankID, string transferTo, string paymentDate, string paymentAmount, List<MoneyData.tblPaymentDetail> details, string description ="")
+        public string AddUpdatePayment(string paymentID, string bankID, string transferTo, string paymentDate, string paymentAmount, List<MoneyData.tblPaymentDetail> details, string description ="")
         {
             int bankIDNew;
             int transferToNew;
             DateTime paymentDateNew;
             double paymentAmountNew;
+            int paymentIDNew=0;
 
             if (!int.TryParse(bankID, out bankIDNew))
                 return "BankID must be provided and in valid format.";
+            else if (!int.TryParse(paymentID, out paymentIDNew) && !string.IsNullOrEmpty(paymentID))
+                return "PaymentID must be in valid format.";
             else if (!int.TryParse(transferTo, out transferToNew))
                 return "TransferTo must be provided and in valid format.";
             else if (!DateTime.TryParse(paymentDate, out paymentDateNew))
@@ -62,21 +65,22 @@ namespace MoneyData
             else if (!double.TryParse(paymentAmount, out paymentAmountNew))
                 return "PaymentAmount must be provided and in valid format.";
 
+
             var payment = new tblPayment { BankID = bankIDNew, Description = description, PaymentDate = paymentDateNew, TransferAmount = paymentAmountNew, TransferTo = transferToNew };
             moneyContext.tblPayments.Add(payment);
-            moneyContext.SaveChanges();
-            var paymentID = payment.PaymentID;
+            paymentIDNew = payment.PaymentID;
 
-            var oldDetails = moneyContext.tblPaymentDetails.Where(a => a.PaymentID == paymentID);
+            var oldDetails = moneyContext.tblPaymentDetails.Where(a => a.PaymentID == paymentIDNew);
             moneyContext.tblPaymentDetails.RemoveRange(oldDetails);
 
             var newDetails = details.Select(
-                s => new MoneyData.tblPaymentDetail{ PaymentID = paymentID, Description = s.Description, PaymentAmount = s.PaymentAmount, TransactionID = s.TransactionID });
+                s => new MoneyData.tblPaymentDetail{ PaymentID = paymentIDNew, Description = s.Description, PaymentAmount = s.PaymentAmount, TransactionID = s.TransactionID });
 
             moneyContext.tblPaymentDetails.AddRange(newDetails);
+
             moneyContext.SaveChanges();
 
-            return string.Empty;
+            return paymentID.ToString();
         }
 
         //public string UpdatePayment(tblPayment input)

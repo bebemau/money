@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="Balance.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="DisplayTransactions_Result.cs">
+      <DependentUpon>MoneyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaymentDetail.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="DisplayBills_Result.cs">
@@ -67,9 +70,6 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="Bill.cs" />
     <Compile Include="Vendor.cs" />
-    <Compile Include="DisplayTransactions_Result.cs">
-      <DependentUpon>MoneyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="MoneyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

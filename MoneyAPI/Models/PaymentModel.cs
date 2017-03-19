@@ -15,6 +15,7 @@ namespace MoneyAPI.Models
 
     public class AddPaymentRequestModel
     {
+        public string PaymentID { get; set; }
         public string BankID { get; set; }
         public string TransferToID { get; set; }
 

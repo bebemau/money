@@ -72,7 +72,9 @@ namespace MoneyAPI.Controllers
                     break;
                 }
                 else if (!string.IsNullOrEmpty(a.PaymentID))
+                {
                     detail.PaymentID = Convert.ToInt16(a.PaymentID);
+                }
 
                 if (!int.TryParse(a.PaymentDetailID, out paymentDetailID) && !string.IsNullOrEmpty(a.PaymentDetailID))
                 {
@@ -96,7 +98,7 @@ namespace MoneyAPI.Controllers
             if (detailErrorMessage != string.Empty)
                 return detailErrorMessage;
 
-            return dataTier.AddUpdatePayment(input.BankID, input.TransferToID, input.PaymentDate, input.PaymentAmount, paymentDetails, input.Description);
+            return dataTier.AddUpdatePayment(input.PaymentID, input.BankID, input.TransferToID, input.PaymentDate, input.PaymentAmount, paymentDetails, input.Description);
 
         }
 

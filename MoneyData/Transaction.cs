@@ -10,8 +10,9 @@ namespace MoneyData
     {
         MoneyEntities moneyContext = new MoneyEntities();
 
-        public List<DisplayTransactions_Result> GetTransactions(string dateFrom = "", string dateTo = "", string bankID ="", string vendorID = "", string amountFrom="", string amountTo="", string description="", string categoryID="" )
+        public List<DisplayTransactions_Result> GetTransactions(string transactionID = "", string dateFrom = "", string dateTo = "", string bankID ="", string vendorID = "", string amountFrom="", string amountTo="", string description="", string categoryID="" )
         {
+            int? transactionIDNew = !string.IsNullOrEmpty(transactionID) ? Convert.ToInt32(transactionID) : (Int32?)null;
             DateTime? dateFromNew = !string.IsNullOrEmpty(dateFrom) ? Convert.ToDateTime(dateFrom) : (DateTime?)null;
             DateTime? dateToNew = !string.IsNullOrEmpty(dateTo) ? Convert.ToDateTime(dateTo) : (DateTime?)null;
             int? bankIDNew = !string.IsNullOrEmpty(bankID) ? Convert.ToInt32(bankID) : (int?)null;
@@ -20,7 +21,7 @@ namespace MoneyData
             double? amountFromNew = !string.IsNullOrEmpty(amountFrom) ? Convert.ToDouble(amountFrom) : (double?)null;
             double? amountToNew = !string.IsNullOrEmpty(amountTo) ? Convert.ToDouble(amountTo) : (double?)null;
 
-            var result = moneyContext.DisplayTransactions(dateFromNew, dateToNew, bankIDNew, vendorIDNew, amountFromNew, amountToNew, description, categoryIDNew).ToList();
+            var result = moneyContext.DisplayTransactions(transactionIDNew, dateFromNew, dateToNew, bankIDNew, vendorIDNew, amountFromNew, amountToNew, description, categoryIDNew).ToList();
             return result;
         }
 

@@ -31,11 +31,11 @@ namespace MoneyAPI.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetTransactions")]
-        public List<MoneyData.DisplayTransactions_Result> GetTransactions(string dateFrom = "", string dateTo = "", string bankID = "", string vendorID = "", string amountFrom = "", string amountTo = "", string categoryID="", string description = "")
+        public List<MoneyData.DisplayTransactions_Result> GetTransactions(GetTransactionRequestModel request)
         {
-            return transactionData.GetTransactions(dateFrom, dateTo, bankID, vendorID, amountFrom, amountTo, description, categoryID);
+            return transactionData.GetTransactions(request.TransactionID, request.DateFrom, request.DateTo, request.BankID, request.VendorID, request.AmountFrom, request.AmountTo, request.Description, request.CategoryID);
         }
 
         [HttpPost]
