@@ -15,7 +15,7 @@ namespace MoneyData
             int categoryIDNew=0;
             var result = moneyContext.tblCategories;
 
-            if (int.TryParse(categoryID, out categoryIDNew))
+            if (string.IsNullOrEmpty(categoryID) || int.TryParse(categoryID, out categoryIDNew))
             {
                 if (categoryIDNew == 0)
                     return new Tuple<string, List<tblCategory>>(string.Empty, result.ToList());

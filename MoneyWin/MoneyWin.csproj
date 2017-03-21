@@ -75,8 +75,10 @@
     <Compile Include="frmWithdrawal.Designer.cs">
       <DependentUpon>frmWithdrawal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\CategoryModel.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\TransactionModel.cs" />
+    <Compile Include="Model\Vendor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">

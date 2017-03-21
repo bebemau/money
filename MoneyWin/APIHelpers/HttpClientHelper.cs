@@ -15,7 +15,7 @@ namespace MoneyWin.APIHelpers
             var client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+            client.MaxResponseContentBufferSize = int.MaxValue;
             return client;
         }
         

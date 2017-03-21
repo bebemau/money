@@ -13,7 +13,6 @@ namespace MoneyWin.APIHelpers
     {
         public static async Task<List<T>> GetListOfObjects<T>(string uri, HttpClient client)
         {
-            client.MaxResponseContentBufferSize = int.MaxValue;
             var returnobj = new List<T>();
             try
             {
@@ -33,7 +32,6 @@ namespace MoneyWin.APIHelpers
 
         public static async Task<T> GetSingleObject<T>(string uri, HttpClient client)
         {
-            client.MaxResponseContentBufferSize = int.MaxValue;
             try
             {
                 var response = await client.GetAsync(uri);
@@ -54,7 +52,6 @@ namespace MoneyWin.APIHelpers
 
         public static async Task<List<TResponse>> PostListOfObjects<TRequest, TResponse>(TRequest request, string uri, HttpClient client)
         {
-            client.MaxResponseContentBufferSize = int.MaxValue;
             var returnobj = new List<TResponse>();
             try
             {

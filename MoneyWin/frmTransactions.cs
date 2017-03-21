@@ -16,35 +16,70 @@ namespace MoneyWin
 {
     public partial class frmTransactions : Form
     {
-        HttpClientHelper clientHelper = new HttpClientHelper();
-        HttpClient client = new HttpClient();
-        RESTHelper apiHelper = new RESTHelper();
+        HttpClientHelper _clientHelper = new HttpClientHelper();
+        HttpClient _client = new HttpClient();
+        RESTHelper _apiHelper = new RESTHelper();
 
         public frmTransactions()
         {
             InitializeComponent();
         }
 
-        private async void frmTransactions_Load(object sender, EventArgs e)
+        private  void frmTransactions_Load(object sender, EventArgs e)
         {
-            client = clientHelper.GetClient();
+            _client = _clientHelper.GetClient();
+
+            PopulateCategories();
+
+            PopulateVendors();
+
+            PopulateTransactions();
+
+            this.WindowState = FormWindowState.Maximized;
+
+        }
+
+        private async Task PopulateCategories()
+        {
+            var data = await RESTHelper.GetSingleObject<CategoryResponseModel>("api/category/GetCategories", _client);
+            var categories = data.Data;
+            var emptyCategory = new CategoryModel() { Category = "-- No Filter --", CategoryID = "" };
+            categories.Add(emptyCategory);
+            var sorted = categories.OrderBy(a => a.Category).ToList();
+            cboCategory.DataSource = sorted;
+        }
+
+        private async Task PopulateVendors()
+        {
+            var vendorsAll = await RESTHelper.GetListOfObjects<VendorResponseModel>("api/vendor/GetVendors", _client);
+            var banks = vendorsAll.Where(a => a.IsBank.ToLower() == "true").ToList();
+            var emptyBank = new VendorResponseModel() { VendorID = "", VendorName = "-- No Filter --" };
+            banks.Add(emptyBank);
+            var sortedBanks = banks.OrderBy(a => a.VendorName).ToList();
+            cboBank.DataSource = sortedBanks;
+
+            var vendors = vendorsAll.Where(a => a.IsBank.ToLower() == "false").ToList();
+            var emptyVendor = new VendorResponseModel() { VendorID = "", VendorName = "-- No Filter --" };
+            vendors.Add(emptyVendor);
+            var sortedVendors = vendors.OrderBy(a => a.VendorName).ToList();
+            cboVendor.DataSource = sortedVendors;
+        }
+
+        private async Task PopulateTransactions()
+        {
             var defaultDatagridDays = ConfigurationManager.AppSettings["DefaultDatagridDays"];
             var dateFrom = DateTime.Now.AddDays(-Convert.ToInt16(defaultDatagridDays));
             var request = new GetTransactionRequestModel()
             {
                 DateFrom = dateFrom.ToString()
             };
-
-            Console.WriteLine(dateFrom.ToString());
-            var result = await RESTHelper.PostListOfObjects<GetTransactionRequestModel, TransactionModel>(request, "api/transaction/gettransactions", client);
-            for(int i=0;i<result.Count;i++)
+            var result = await RESTHelper.PostListOfObjects<GetTransactionRequestModel, TransactionModel>(request, "api/transaction/gettransactions", _client);
+            for (int i = 0; i < result.Count; i++)
             {
                 if (result[i].TransactionType == ((int)TransactionType.Deposit).ToString())
                     result[i].Deposit = result[i].Amount;
                 else
                     result[i].Withdrawal = result[i].Amount;
-
-                Console.WriteLine(result[i].TransactionType);
             }
 
             dgTransactions.AutoGenerateColumns = false;
@@ -71,6 +106,11 @@ namespace MoneyWin
                 var form = new frmWithdrawal(data); 
                 form.Show();
             }
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            var categoryID = cboCategory.SelectedValue;
         }
     }
 }
