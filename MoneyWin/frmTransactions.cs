@@ -29,11 +29,19 @@ namespace MoneyWin
         {
             _client = _clientHelper.GetClient();
 
+            dgTransactions.AutoGenerateColumns = false;
+
             PopulateCategories();
 
             PopulateVendors();
 
             PopulateTransactions();
+
+            cboTransactionType.DataSource = Enum.GetValues(typeof(TransactionType));
+            cboTransactionType.SelectedItem = TransactionType.All;
+
+            cboStatus.DataSource = Enum.GetValues(typeof(TransactionStatus));
+            cboStatus.SelectedItem = TransactionStatus.All;
 
             this.WindowState = FormWindowState.Maximized;
 
@@ -45,8 +53,13 @@ namespace MoneyWin
             var categories = data.Data;
             var emptyCategory = new CategoryModel() { Category = "-- No Filter --", CategoryID = "" };
             categories.Add(emptyCategory);
-            var sorted = categories.OrderBy(a => a.Category).ToList();
-            cboCategory.DataSource = sorted;
+            categories.Sort(
+                delegate (CategoryModel p1, CategoryModel p2)
+                {
+                    return p1.Category.CompareTo(p2.Category);
+                }
+            );
+            cboCategory.DataSource = categories;
         }
 
         private async Task PopulateVendors()
@@ -55,14 +68,24 @@ namespace MoneyWin
             var banks = vendorsAll.Where(a => a.IsBank.ToLower() == "true").ToList();
             var emptyBank = new VendorResponseModel() { VendorID = "", VendorName = "-- No Filter --" };
             banks.Add(emptyBank);
-            var sortedBanks = banks.OrderBy(a => a.VendorName).ToList();
-            cboBank.DataSource = sortedBanks;
+            banks.Sort(
+                delegate (VendorResponseModel p1, VendorResponseModel p2)
+                {
+                    return p1.VendorName.CompareTo(p2.VendorName);
+                }
+            );
+            cboBank.DataSource = banks;
 
             var vendors = vendorsAll.Where(a => a.IsBank.ToLower() == "false").ToList();
             var emptyVendor = new VendorResponseModel() { VendorID = "", VendorName = "-- No Filter --" };
             vendors.Add(emptyVendor);
-            var sortedVendors = vendors.OrderBy(a => a.VendorName).ToList();
-            cboVendor.DataSource = sortedVendors;
+            vendors.Sort(
+                delegate (VendorResponseModel p1, VendorResponseModel p2)
+                {
+                    return p1.VendorName.CompareTo(p2.VendorName);
+                }
+            );
+            cboVendor.DataSource = vendors;
         }
 
         private async Task PopulateTransactions()
@@ -74,16 +97,20 @@ namespace MoneyWin
                 DateFrom = dateFrom.ToString()
             };
             var result = await RESTHelper.PostListOfObjects<GetTransactionRequestModel, TransactionModel>(request, "api/transaction/gettransactions", _client);
-            for (int i = 0; i < result.Count; i++)
+            DrawTransactionGrid(result);
+        }
+
+        private void DrawTransactionGrid(List<TransactionModel> data)
+        {
+            for (int i = 0; i < data.Count; i++)
             {
-                if (result[i].TransactionType == ((int)TransactionType.Deposit).ToString())
-                    result[i].Deposit = result[i].Amount;
+                if (data[i].TransactionType == ((int)TransactionType.Deposit).ToString())
+                    data[i].Deposit = data[i].Amount;
                 else
-                    result[i].Withdrawal = result[i].Amount;
+                    data[i].Withdrawal = data[i].Amount;
             }
 
-            dgTransactions.AutoGenerateColumns = false;
-            dgTransactions.DataSource = result;
+            dgTransactions.DataSource = data;
         }
 
         private void dgTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -108,9 +135,62 @@ namespace MoneyWin
             }
         }
 
-        private void btnFilter_Click(object sender, EventArgs e)
+        private async void btnFilter_Click(object sender, EventArgs e)
         {
-            var categoryID = cboCategory.SelectedValue;
+
+            var categoryID = 0;
+            var bankID = 0;
+            var vendorID = 0;
+            var dateFrom = DateTime.MinValue;
+            var dateTo = DateTime.MinValue;
+            var amountFrom = decimal.MinValue;
+            var amountTo = decimal.MinValue;
+
+            var request = new GetTransactionRequestModel();
+            if (cboCategory.SelectedValue.ToString() != string.Empty)
+                request.CategoryID = cboCategory.SelectedValue.ToString();
+
+            if (cboBank.SelectedValue.ToString() != string.Empty)
+                request.BankID = cboBank.SelectedValue.ToString();
+
+            if(cboVendor.SelectedValue.ToString() != string.Empty)
+                request.VendorID = cboVendor.SelectedValue.ToString();
+
+            if (txtDateFrom.MaskCompleted)
+                request.DateFrom = txtDateFrom.Text;
+
+            if (txtDateTo.MaskCompleted)
+                request.DateTo = txtDateTo.Text;
+
+            if (txtAmountFrom.Text != string.Empty)
+            {
+                if (decimal.TryParse(txtAmountFrom.Text, out amountFrom))
+                    request.AmountFrom = txtAmountFrom.Text;
+            }
+
+            if (txtAmountTo.Text != string.Empty)
+                if (decimal.TryParse(txtAmountTo.Text, out amountTo))
+                    request.AmountTo = txtAmountTo.Text;
+
+            var result = await RESTHelper.PostListOfObjects<GetTransactionRequestModel, TransactionModel>(request, "api/transaction/gettransactions", _client);
+            DrawTransactionGrid(result);
+
+        }
+
+        private void txtAmountFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtAmountTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

@@ -50,11 +50,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cboBank = new System.Windows.Forms.ComboBox();
-            this.txtDateFrom = new System.Windows.Forms.TextBox();
-            this.txtDateTo = new System.Windows.Forms.TextBox();
             this.btnFilter = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAmountTo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboTransactionType = new System.Windows.Forms.ComboBox();
@@ -66,6 +63,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.cboVendor = new System.Windows.Forms.ComboBox();
+            this.txtDateFrom = new System.Windows.Forms.MaskedTextBox();
+            this.txtDateTo = new System.Windows.Forms.MaskedTextBox();
+            this.txtAmountFrom = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgTransactions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +92,7 @@
             this.dgTransactions.ReadOnly = true;
             this.dgTransactions.RowTemplate.Height = 28;
             this.dgTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTransactions.Size = new System.Drawing.Size(1733, 651);
+            this.dgTransactions.Size = new System.Drawing.Size(2376, 910);
             this.dgTransactions.TabIndex = 0;
             this.dgTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTransactions_CellContentClick);
             // 
@@ -245,43 +245,23 @@
             this.cboBank.TabIndex = 5;
             this.cboBank.ValueMember = "VendorID";
             // 
-            // txtDateFrom
-            // 
-            this.txtDateFrom.Location = new System.Drawing.Point(102, 108);
-            this.txtDateFrom.Name = "txtDateFrom";
-            this.txtDateFrom.Size = new System.Drawing.Size(114, 26);
-            this.txtDateFrom.TabIndex = 7;
-            // 
-            // txtDateTo
-            // 
-            this.txtDateTo.Location = new System.Drawing.Point(278, 109);
-            this.txtDateTo.Name = "txtDateTo";
-            this.txtDateTo.Size = new System.Drawing.Size(114, 26);
-            this.txtDateTo.TabIndex = 8;
-            // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(1670, 115);
+            this.btnFilter.Location = new System.Drawing.Point(2203, 107);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(75, 42);
+            this.btnFilter.Size = new System.Drawing.Size(185, 42);
             this.btnFilter.TabIndex = 9;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
-            // textBox1
+            // txtAmountTo
             // 
-            this.textBox1.Location = new System.Drawing.Point(740, 108);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(114, 26);
-            this.textBox1.TabIndex = 13;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(564, 107);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(114, 26);
-            this.textBox2.TabIndex = 12;
+            this.txtAmountTo.Location = new System.Drawing.Point(740, 108);
+            this.txtAmountTo.Name = "txtAmountTo";
+            this.txtAmountTo.Size = new System.Drawing.Size(114, 26);
+            this.txtAmountTo.TabIndex = 13;
+            this.txtAmountTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountTo_KeyPress);
             // 
             // label5
             // 
@@ -391,11 +371,39 @@
             this.cboVendor.TabIndex = 23;
             this.cboVendor.ValueMember = "VendorID";
             // 
+            // txtDateFrom
+            // 
+            this.txtDateFrom.Location = new System.Drawing.Point(102, 109);
+            this.txtDateFrom.Mask = "00/00/0000";
+            this.txtDateFrom.Name = "txtDateFrom";
+            this.txtDateFrom.Size = new System.Drawing.Size(111, 26);
+            this.txtDateFrom.TabIndex = 24;
+            this.txtDateFrom.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtDateTo
+            // 
+            this.txtDateTo.Location = new System.Drawing.Point(281, 107);
+            this.txtDateTo.Mask = "00/00/0000";
+            this.txtDateTo.Name = "txtDateTo";
+            this.txtDateTo.Size = new System.Drawing.Size(111, 26);
+            this.txtDateTo.TabIndex = 25;
+            this.txtDateTo.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtAmountFrom
+            // 
+            this.txtAmountFrom.Location = new System.Drawing.Point(564, 107);
+            this.txtAmountFrom.Name = "txtAmountFrom";
+            this.txtAmountFrom.Size = new System.Drawing.Size(114, 26);
+            this.txtAmountFrom.TabIndex = 12;
+            this.txtAmountFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountFrom_KeyPress);
+            // 
             // frmTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1805, 826);
+            this.ClientSize = new System.Drawing.Size(2400, 1085);
+            this.Controls.Add(this.txtDateTo);
+            this.Controls.Add(this.txtDateFrom);
             this.Controls.Add(this.cboVendor);
             this.Controls.Add(this.cboCategory);
             this.Controls.Add(this.txtDescription);
@@ -405,13 +413,11 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboTransactionType);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtAmountTo);
+            this.Controls.Add(this.txtAmountFrom);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnFilter);
-            this.Controls.Add(this.txtDateTo);
-            this.Controls.Add(this.txtDateFrom);
             this.Controls.Add(this.cboBank);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -449,11 +455,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboBank;
-        private System.Windows.Forms.TextBox txtDateFrom;
-        private System.Windows.Forms.TextBox txtDateTo;
         private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAmountTo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboTransactionType;
@@ -465,5 +468,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.ComboBox cboVendor;
+        private System.Windows.Forms.MaskedTextBox txtDateFrom;
+        private System.Windows.Forms.MaskedTextBox txtDateTo;
+        private System.Windows.Forms.TextBox txtAmountFrom;
     }
 }
