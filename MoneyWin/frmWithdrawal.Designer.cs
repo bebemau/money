@@ -42,6 +42,7 @@
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -179,12 +180,23 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(559, 29);
             this.txtAmount.TabIndex = 14;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(717, 528);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(157, 47);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // frmWithdrawal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 788);
+            this.ClientSize = new System.Drawing.Size(1027, 628);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -224,5 +236,6 @@
         private System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.Button btnSave;
     }
 }

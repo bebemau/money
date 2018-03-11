@@ -143,6 +143,11 @@ namespace MoneyWin
                 var form = new frmWithdrawal(data); 
                 form.Show();
             }
+            else
+            {
+                var form = new frmDeposit(data);
+                form.Show();
+            }
         }
 
         private async void btnFilter_Click(object sender, EventArgs e)

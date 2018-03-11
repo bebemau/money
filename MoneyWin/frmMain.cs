@@ -32,8 +32,14 @@ namespace MoneyWin
 
         private void btnTransactions_Click(object sender, EventArgs e)
         {
-            var frmTransactions = new frmTransactions();
-            frmTransactions.Show();
+            var form = new frmTransactions();
+            form.Show();
+        }
+
+        private void btnVendors_Click(object sender, EventArgs e)
+        {
+            var form = new frmVendors();
+            form.Show();
         }
     }
 }
