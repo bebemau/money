@@ -16,10 +16,12 @@ using Microsoft.Owin.Security.OAuth;
 using MoneyAPI.Models;
 using MoneyAPI.Providers;
 using MoneyAPI.Results;
+using MoneyAPI.Filters;
 
 namespace MoneyAPI.Controllers
 {
     //[Authorize]
+    //[DeflateCompression]
     [RoutePrefix("api/bill")]
     public class BillController : ApiController
     {

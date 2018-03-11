@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgTransactions = new System.Windows.Forms.DataGridView();
             this.colTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +66,7 @@
             this.txtDateFrom = new System.Windows.Forms.MaskedTextBox();
             this.txtDateTo = new System.Windows.Forms.MaskedTextBox();
             this.txtAmountFrom = new System.Windows.Forms.TextBox();
+            this.btnGO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgTransactions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,12 +88,13 @@
             this.colDatePosted,
             this.colDateClosed,
             this.colCategoryID});
-            this.dgTransactions.Location = new System.Drawing.Point(12, 163);
+            this.dgTransactions.Location = new System.Drawing.Point(15, 196);
+            this.dgTransactions.Margin = new System.Windows.Forms.Padding(4);
             this.dgTransactions.Name = "dgTransactions";
             this.dgTransactions.ReadOnly = true;
             this.dgTransactions.RowTemplate.Height = 28;
             this.dgTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTransactions.Size = new System.Drawing.Size(2376, 910);
+            this.dgTransactions.Size = new System.Drawing.Size(2904, 1092);
             this.dgTransactions.TabIndex = 0;
             this.dgTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTransactions_CellContentClick);
             // 
@@ -148,8 +150,8 @@
             // colDeposit
             // 
             this.colDeposit.DataPropertyName = "Deposit";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle1;
             this.colDeposit.HeaderText = "Deposit";
             this.colDeposit.Name = "colDeposit";
             this.colDeposit.ReadOnly = true;
@@ -157,8 +159,8 @@
             // colAmountWithdrawal
             // 
             this.colAmountWithdrawal.DataPropertyName = "Withdrawal";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle2;
             this.colAmountWithdrawal.HeaderText = "Withdrawal";
             this.colAmountWithdrawal.Name = "colAmountWithdrawal";
             this.colAmountWithdrawal.ReadOnly = true;
@@ -201,36 +203,40 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(16, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.Size = new System.Drawing.Size(57, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Bank";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 61);
+            this.label2.Location = new System.Drawing.Point(16, 73);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 20);
+            this.label2.Size = new System.Drawing.Size(76, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Vendor";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 115);
+            this.label3.Location = new System.Drawing.Point(16, 138);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 20);
+            this.label3.Size = new System.Drawing.Size(57, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "From";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(236, 115);
+            this.label4.Location = new System.Drawing.Point(288, 138);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 20);
+            this.label4.Size = new System.Drawing.Size(36, 25);
             this.label4.TabIndex = 4;
             this.label4.Text = "To";
             // 
@@ -239,17 +245,19 @@
             this.cboBank.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
-            this.cboBank.Location = new System.Drawing.Point(102, 12);
+            this.cboBank.Location = new System.Drawing.Point(125, 14);
+            this.cboBank.Margin = new System.Windows.Forms.Padding(4);
             this.cboBank.Name = "cboBank";
-            this.cboBank.Size = new System.Drawing.Size(290, 28);
+            this.cboBank.Size = new System.Drawing.Size(354, 32);
             this.cboBank.TabIndex = 5;
             this.cboBank.ValueMember = "VendorID";
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(2203, 107);
+            this.btnFilter.Location = new System.Drawing.Point(2693, 128);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(185, 42);
+            this.btnFilter.Size = new System.Drawing.Size(226, 50);
             this.btnFilter.TabIndex = 9;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
@@ -257,27 +265,30 @@
             // 
             // txtAmountTo
             // 
-            this.txtAmountTo.Location = new System.Drawing.Point(740, 108);
+            this.txtAmountTo.Location = new System.Drawing.Point(904, 130);
+            this.txtAmountTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmountTo.Name = "txtAmountTo";
-            this.txtAmountTo.Size = new System.Drawing.Size(114, 26);
+            this.txtAmountTo.Size = new System.Drawing.Size(138, 29);
             this.txtAmountTo.TabIndex = 13;
             this.txtAmountTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountTo_KeyPress);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(698, 114);
+            this.label5.Location = new System.Drawing.Point(853, 137);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 20);
+            this.label5.Size = new System.Drawing.Size(36, 25);
             this.label5.TabIndex = 11;
             this.label5.Text = "To";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(444, 114);
+            this.label6.Location = new System.Drawing.Point(543, 137);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 20);
+            this.label6.Size = new System.Drawing.Size(130, 25);
             this.label6.TabIndex = 10;
             this.label6.Text = "Amount From";
             // 
@@ -286,27 +297,30 @@
             this.cboTransactionType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboTransactionType.DisplayMember = "VendorName";
             this.cboTransactionType.FormattingEnabled = true;
-            this.cboTransactionType.Location = new System.Drawing.Point(564, 13);
+            this.cboTransactionType.Location = new System.Drawing.Point(689, 16);
+            this.cboTransactionType.Margin = new System.Windows.Forms.Padding(4);
             this.cboTransactionType.Name = "cboTransactionType";
-            this.cboTransactionType.Size = new System.Drawing.Size(290, 28);
+            this.cboTransactionType.Size = new System.Drawing.Size(354, 32);
             this.cboTransactionType.TabIndex = 15;
             this.cboTransactionType.ValueMember = "VendorID";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(444, 14);
+            this.label7.Location = new System.Drawing.Point(543, 17);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 20);
+            this.label7.Size = new System.Drawing.Size(57, 25);
             this.label7.TabIndex = 14;
             this.label7.Text = "Type";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(444, 59);
+            this.label8.Location = new System.Drawing.Point(543, 71);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 20);
+            this.label8.Size = new System.Drawing.Size(92, 25);
             this.label8.TabIndex = 16;
             this.label8.Text = "Category";
             // 
@@ -320,34 +334,38 @@
             "Open",
             "Posted",
             "Closed"});
-            this.cboStatus.Location = new System.Drawing.Point(1015, 13);
+            this.cboStatus.Location = new System.Drawing.Point(1241, 16);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(290, 28);
+            this.cboStatus.Size = new System.Drawing.Size(354, 32);
             this.cboStatus.TabIndex = 19;
             this.cboStatus.ValueMember = "VendorID";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(895, 14);
+            this.label9.Location = new System.Drawing.Point(1094, 17);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 20);
+            this.label9.Size = new System.Drawing.Size(68, 25);
             this.label9.TabIndex = 18;
             this.label9.Text = "Status";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(1015, 61);
+            this.txtDescription.Location = new System.Drawing.Point(1241, 73);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(290, 26);
+            this.txtDescription.Size = new System.Drawing.Size(354, 29);
             this.txtDescription.TabIndex = 21;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(895, 61);
+            this.label10.Location = new System.Drawing.Point(1094, 73);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 20);
+            this.label10.Size = new System.Drawing.Size(109, 25);
             this.label10.TabIndex = 20;
             this.label10.Text = "Description";
             // 
@@ -355,9 +373,10 @@
             // 
             this.cboCategory.DisplayMember = "Category";
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(564, 58);
+            this.cboCategory.Location = new System.Drawing.Point(689, 70);
+            this.cboCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(290, 28);
+            this.cboCategory.Size = new System.Drawing.Size(354, 32);
             this.cboCategory.TabIndex = 22;
             this.cboCategory.ValueMember = "CategoryID";
             // 
@@ -365,43 +384,58 @@
             // 
             this.cboVendor.DisplayMember = "VendorName";
             this.cboVendor.FormattingEnabled = true;
-            this.cboVendor.Location = new System.Drawing.Point(102, 58);
+            this.cboVendor.Location = new System.Drawing.Point(125, 70);
+            this.cboVendor.Margin = new System.Windows.Forms.Padding(4);
             this.cboVendor.Name = "cboVendor";
-            this.cboVendor.Size = new System.Drawing.Size(290, 28);
+            this.cboVendor.Size = new System.Drawing.Size(354, 32);
             this.cboVendor.TabIndex = 23;
             this.cboVendor.ValueMember = "VendorID";
             // 
             // txtDateFrom
             // 
-            this.txtDateFrom.Location = new System.Drawing.Point(102, 109);
+            this.txtDateFrom.Location = new System.Drawing.Point(125, 131);
+            this.txtDateFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtDateFrom.Mask = "00/00/0000";
             this.txtDateFrom.Name = "txtDateFrom";
-            this.txtDateFrom.Size = new System.Drawing.Size(111, 26);
+            this.txtDateFrom.Size = new System.Drawing.Size(135, 29);
             this.txtDateFrom.TabIndex = 24;
             this.txtDateFrom.ValidatingType = typeof(System.DateTime);
             // 
             // txtDateTo
             // 
-            this.txtDateTo.Location = new System.Drawing.Point(281, 107);
+            this.txtDateTo.Location = new System.Drawing.Point(343, 128);
+            this.txtDateTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDateTo.Mask = "00/00/0000";
             this.txtDateTo.Name = "txtDateTo";
-            this.txtDateTo.Size = new System.Drawing.Size(111, 26);
+            this.txtDateTo.Size = new System.Drawing.Size(135, 29);
             this.txtDateTo.TabIndex = 25;
             this.txtDateTo.ValidatingType = typeof(System.DateTime);
             // 
             // txtAmountFrom
             // 
-            this.txtAmountFrom.Location = new System.Drawing.Point(564, 107);
+            this.txtAmountFrom.Location = new System.Drawing.Point(689, 128);
+            this.txtAmountFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmountFrom.Name = "txtAmountFrom";
-            this.txtAmountFrom.Size = new System.Drawing.Size(114, 26);
+            this.txtAmountFrom.Size = new System.Drawing.Size(138, 29);
             this.txtAmountFrom.TabIndex = 12;
             this.txtAmountFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountFrom_KeyPress);
             // 
+            // btnGO
+            // 
+            this.btnGO.Location = new System.Drawing.Point(1241, 128);
+            this.btnGO.Name = "btnGO";
+            this.btnGO.Size = new System.Drawing.Size(148, 34);
+            this.btnGO.TabIndex = 26;
+            this.btnGO.Text = "Go";
+            this.btnGO.UseVisualStyleBackColor = true;
+            this.btnGO.Click += new System.EventHandler(this.btnGO_Click);
+            // 
             // frmTransactions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2400, 1085);
+            this.ClientSize = new System.Drawing.Size(2564, 1302);
+            this.Controls.Add(this.btnGO);
             this.Controls.Add(this.txtDateTo);
             this.Controls.Add(this.txtDateFrom);
             this.Controls.Add(this.cboVendor);
@@ -424,6 +458,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgTransactions);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTransactions";
             this.Text = "frmTransactions";
             this.Load += new System.EventHandler(this.frmTransactions_Load);
@@ -471,5 +506,6 @@
         private System.Windows.Forms.MaskedTextBox txtDateFrom;
         private System.Windows.Forms.MaskedTextBox txtDateTo;
         private System.Windows.Forms.TextBox txtAmountFrom;
+        private System.Windows.Forms.Button btnGO;
     }
 }

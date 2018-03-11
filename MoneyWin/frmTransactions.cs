@@ -30,6 +30,7 @@ namespace MoneyWin
             _client = _clientHelper.GetClient();
 
             dgTransactions.AutoGenerateColumns = false;
+            dgTransactions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             PopulateCategories();
 
@@ -113,6 +114,11 @@ namespace MoneyWin
             dgTransactions.DataSource = data;
         }
 
+        private void dgvUserList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show(e.RowIndex.ToString());
+        }
+
         private void dgTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgTransactions.CurrentRow;
@@ -191,6 +197,11 @@ namespace MoneyWin
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private async void btnGO_Click(object sender, EventArgs e)
+        {
+            await PopulateTransactions();
         }
     }
 }
