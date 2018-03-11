@@ -11,6 +11,7 @@ using MoneyWin.APIHelpers;
 using System.Net.Http;
 using MoneyWin.Model;
 using System.Configuration;
+using Common;
 
 namespace MoneyWin
 {
@@ -25,18 +26,18 @@ namespace MoneyWin
             InitializeComponent();
         }
 
-        private  void frmTransactions_Load(object sender, EventArgs e)
+        private async void frmTransactions_Load(object sender, EventArgs e)
         {
             _client = _clientHelper.GetClient();
 
             dgTransactions.AutoGenerateColumns = false;
             dgTransactions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            PopulateCategories();
+            await PopulateCategories();
 
-            PopulateVendors();
+            await PopulateVendors();
 
-            PopulateTransactions();
+            await PopulateTransactions();
 
             cboTransactionType.DataSource = Enum.GetValues(typeof(TransactionType));
             cboTransactionType.SelectedItem = TransactionType.All;
@@ -105,7 +106,7 @@ namespace MoneyWin
         {
             for (int i = 0; i < data.Count; i++)
             {
-                if (data[i].TransactionType == ((int)TransactionType.Deposit).ToString())
+                if (data[i].TransactionType == TransactionType.Deposit)
                     data[i].Deposit = data[i].Amount;
                 else
                     data[i].Withdrawal = data[i].Amount;
@@ -122,10 +123,13 @@ namespace MoneyWin
         private void dgTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgTransactions.CurrentRow;
+
+            var transactionType = row.Cells[colTransactionType.Index].Value.ToString().ToEnum<TransactionType>();
+            
             var data = new TransactionModel();
             data.TransactionID = row.Cells[colTransactionID.Index].Value.ToString();
-            data.TransactionType = row.Cells[colTransactionType.Index].Value.ToString();
-            data.Amount = row.Cells[colTransactionType.Index].Value.ToString() == "1" ? row.Cells[colDeposit.Index].Value.ToString() : row.Cells[colAmountWithdrawal.Index].Value.ToString();
+            data.TransactionType = transactionType;
+            data.Amount = transactionType == TransactionType.Deposit ? row.Cells[colDeposit.Index].Value.ToString() : row.Cells[colAmountWithdrawal.Index].Value.ToString();
             data.BankID = row.Cells[colBankID.Index].Value.ToString();
             data.CheckNumber = row.Cells[colCheckNumber.Index].Value == null ? string.Empty : row.Cells[colCheckNumber.Index].Value.ToString();
             data.CategoryID = row.Cells[colCategoryID.Index].Value == null ? string.Empty : row.Cells[colCategoryID.Index].Value.ToString();
@@ -134,7 +138,7 @@ namespace MoneyWin
             data.TransactionDate = row.Cells[colDate.Index].Value.ToString();
             data.VendorID = row.Cells[colVendorID.Index].Value == null ? string.Empty : row.Cells[colVendorID.Index].Value.ToString();
 
-            if (row.Cells[colTransactionType.Index].Value.ToString() == ((int)TransactionType.Withdrawal).ToString())
+            if (transactionType == TransactionType.Withdrawal)
             {
                 var form = new frmWithdrawal(data); 
                 form.Show();

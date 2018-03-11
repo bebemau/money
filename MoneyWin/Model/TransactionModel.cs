@@ -17,7 +17,7 @@ namespace MoneyWin.Model
         public string VendorName { get; set; }
         public string Amount { get; set; }
         public string Description { get; set; }
-        public string TransactionType { get; set; }
+        public TransactionType TransactionType { get; set; }
         public string ClosedDate { get; set; }
         public string CheckNumber { get; set; }
         public string PaymentID { get; set; }
