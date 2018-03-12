@@ -98,7 +98,7 @@ namespace MoneyAPI.Controllers
             transaction.VendorID = vendorIDNew;
 
             if (transactionIDNew == 0)
-                return transactionData.AddTransaction(transaction);
+                return transactionData.AddTransaction(transaction).ToString();
             else
                 return transactionData.UpdateTransaction(transaction);
         }

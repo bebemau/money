@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgTransactions = new System.Windows.Forms.DataGridView();
             this.colTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,8 +150,8 @@
             // colDeposit
             // 
             this.colDeposit.DataPropertyName = "Deposit";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle11;
             this.colDeposit.HeaderText = "Deposit";
             this.colDeposit.Name = "colDeposit";
             this.colDeposit.ReadOnly = true;
@@ -159,8 +159,8 @@
             // colAmountWithdrawal
             // 
             this.colAmountWithdrawal.DataPropertyName = "Withdrawal";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle12;
             this.colAmountWithdrawal.HeaderText = "Withdrawal";
             this.colAmountWithdrawal.Name = "colAmountWithdrawal";
             this.colAmountWithdrawal.ReadOnly = true;
@@ -433,9 +433,9 @@
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(166, 140);
             this.btnGO.TabIndex = 10;
-            this.btnGO.Text = "Go";
+            this.btnGO.Text = "Search";
             this.btnGO.UseVisualStyleBackColor = true;
-            this.btnGO.Click += new System.EventHandler(this.btnGO_Click);
+            this.btnGO.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // frmTransactions
             // 

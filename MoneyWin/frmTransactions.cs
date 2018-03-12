@@ -152,7 +152,6 @@ namespace MoneyWin
 
         private async void btnFilter_Click(object sender, EventArgs e)
         {
-
             var categoryID = 0;
             var bankID = 0;
             var vendorID = 0;
@@ -200,9 +199,5 @@ namespace MoneyWin
                 e.Handled = true;
         }
 
-        private async void btnGO_Click(object sender, EventArgs e)
-        {
-            await PopulateTransactions();
-        }
     }
 }
