@@ -35,12 +35,16 @@ namespace MoneyWin
 
         }
 
-        private async Task PopulateVendors(string searchString = "")
+        private async Task PopulateVendors(string searchString = "", bool isInsert = false)
         {
             var vendors = await RESTHelper.GetListOfObjects<VendorResponseModel>("api/vendor/GetVendors", _client);
             if(!string.IsNullOrEmpty(searchString))
             {
                 vendors = vendors.Where(a => a.VendorName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+            else if (isInsert)
+            {
+                vendors.Add(new VendorResponseModel { VendorID = "0", VendorName = "", IsBank = "false", Active = "true" });
             }
 
             vendors.Sort(
@@ -59,10 +63,12 @@ namespace MoneyWin
                 await PopulateVendors(txtSearchVendor.Text);
         }
 
-        private void btnNewVendor_Click(object sender, EventArgs e)
+        private async void btnNewVendor_Click(object sender, EventArgs e)
         {
-            var form = new frmVendor();
-            form.Show();
+            //var form = new frmVendor();
+            //form.Show();
+
+            await PopulateVendors(string.Empty, true);
         }
 
         private void dgVendors_RowLeave(object sender, DataGridViewCellEventArgs e)
@@ -86,10 +92,16 @@ namespace MoneyWin
             
         }
 
-        private void SaveVendor(tblVendor vendorModel)
+        private async void SaveVendor(tblVendor vendorModel)
         {
             var vendorObject = new VendorData();
-            vendorObject.UpdateVendor(vendorModel);
+
+            if (vendorModel.VendorID != 0)
+                vendorObject.UpdateVendor(vendorModel);
+            else
+                vendorObject.AddVendor(vendorModel);
+
+            await PopulateVendors();
         }
 
     }
