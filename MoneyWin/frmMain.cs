@@ -62,5 +62,11 @@ namespace MoneyWin
         {
             Application.Exit();
         }
+
+        private void btnCategories_Click(object sender, EventArgs e)
+        {
+            var form = new frmCategory();
+            form.Show();
+        }
     }
 }

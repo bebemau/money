@@ -64,6 +64,12 @@
   <ItemGroup>
     <Compile Include="APIHelpers\HttpClientHelper.cs" />
     <Compile Include="APIHelpers\RESTHelper.cs" />
+    <Compile Include="frmCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCategory.Designer.cs">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDeposit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCategory.resx">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDeposit.resx">
       <DependentUpon>frmDeposit.cs</DependentUpon>
     </EmbeddedResource>

@@ -78,6 +78,7 @@
             this.btnCategories.TabIndex = 1;
             this.btnCategories.Text = "Categories";
             this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
             // 
             // btnTransfers
             // 
