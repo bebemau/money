@@ -35,6 +35,7 @@
             this.colVendorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsBank = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colIsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnNewVendor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgVendors)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             this.dgVendors.RowTemplate.Height = 31;
             this.dgVendors.Size = new System.Drawing.Size(1185, 850);
             this.dgVendors.TabIndex = 2;
+            this.dgVendors.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVendors_RowLeave);
             // 
             // colVendorID
             // 
@@ -95,11 +97,22 @@
             this.colIsActive.HeaderText = "IsActive";
             this.colIsActive.Name = "colIsActive";
             // 
+            // btnNewVendor
+            // 
+            this.btnNewVendor.Location = new System.Drawing.Point(1054, 37);
+            this.btnNewVendor.Name = "btnNewVendor";
+            this.btnNewVendor.Size = new System.Drawing.Size(179, 38);
+            this.btnNewVendor.TabIndex = 3;
+            this.btnNewVendor.Text = "New Vendor";
+            this.btnNewVendor.UseVisualStyleBackColor = true;
+            this.btnNewVendor.Click += new System.EventHandler(this.btnNewVendor_Click);
+            // 
             // frmVendors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1305, 976);
+            this.Controls.Add(this.btnNewVendor);
             this.Controls.Add(this.dgVendors);
             this.Controls.Add(this.txtSearchVendor);
             this.Controls.Add(this.label1);
@@ -121,5 +134,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVendorName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsBank;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsActive;
+        private System.Windows.Forms.Button btnNewVendor;
     }
 }

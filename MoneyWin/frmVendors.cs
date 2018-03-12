@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MoneyWin.Model;
 using MoneyWin.APIHelpers;
 using System.Net.Http;
+using MoneyData;
 
 namespace MoneyWin
 {
@@ -57,5 +58,39 @@ namespace MoneyWin
             if (e.KeyCode == Keys.Enter)
                 await PopulateVendors(txtSearchVendor.Text);
         }
+
+        private void btnNewVendor_Click(object sender, EventArgs e)
+        {
+            var form = new frmVendor();
+            form.Show();
+        }
+
+        private void dgVendors_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgVendors.IsCurrentRowDirty)
+            {
+                var row = dgVendors.Rows[e.RowIndex];
+                var vendorID = row.Cells["colVendorID"].FormattedValue;
+                var vendorName = row.Cells["colVendorName"].EditedFormattedValue.ToString();
+                var isBank = Convert.ToBoolean(row.Cells["colIsBank"].EditedFormattedValue);
+                var isActive = Convert.ToBoolean(row.Cells["colIsActive"].EditedFormattedValue.ToString());
+
+                var vendorModel = new tblVendor();
+                vendorModel.VendorID = Convert.ToInt32(vendorID);
+                vendorModel.VendorName = vendorName;
+                vendorModel.IsBank = isBank;
+                vendorModel.Active = isActive;
+
+                SaveVendor(vendorModel);
+            }
+            
+        }
+
+        private void SaveVendor(tblVendor vendorModel)
+        {
+            var vendorObject = new VendorData();
+            vendorObject.UpdateVendor(vendorModel);
+        }
+
     }
 }
