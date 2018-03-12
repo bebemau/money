@@ -186,6 +186,9 @@ namespace MoneyWin
                 if (decimal.TryParse(txtAmountTo.Text, out amountTo))
                     request.AmountTo = txtAmountTo.Text;
 
+            if (!string.IsNullOrEmpty(txtDescription.Text))
+                request.Description = txtDescription.Text;
+
             var result = await RESTHelper.PostListOfObjects<GetTransactionRequestModel, TransactionModel>(request, "api/transaction/gettransactions", _client);
             DrawTransactionGrid(result);
 
@@ -197,6 +200,11 @@ namespace MoneyWin
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void cboBank_Enter(object sender, EventArgs e)
+        {
+            ((ComboBox)sender).SelectAll();
         }
 
     }

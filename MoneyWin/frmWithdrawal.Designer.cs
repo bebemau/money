@@ -252,6 +252,7 @@
             this.txtDate.Size = new System.Drawing.Size(559, 29);
             this.txtDate.TabIndex = 0;
             this.txtDate.ValidatingType = typeof(System.DateTime);
+            this.txtDate.Validating += new System.ComponentModel.CancelEventHandler(this.txtDate_Validating);
             // 
             // txtDatePosted
             // 
@@ -261,6 +262,7 @@
             this.txtDatePosted.Size = new System.Drawing.Size(559, 29);
             this.txtDatePosted.TabIndex = 7;
             this.txtDatePosted.ValidatingType = typeof(System.DateTime);
+            this.txtDatePosted.Validating += new System.ComponentModel.CancelEventHandler(this.txtDatePosted_Validating);
             // 
             // frmWithdrawal
             // 

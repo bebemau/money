@@ -109,5 +109,17 @@ namespace MoneyWin
             else
                 e.Handled = true;
         }
+
+        private void txtDate_Validating(object sender, CancelEventArgs e)
+        {
+            if (!txtDate.MaskCompleted)
+                e.Cancel = true;
+        }
+
+        private void txtDatePosted_Validating(object sender, CancelEventArgs e)
+        {
+            if (!txtDatePosted.MaskCompleted)
+                e.Cancel = true;
+        }
     }
 }

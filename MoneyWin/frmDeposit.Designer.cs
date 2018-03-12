@@ -149,6 +149,7 @@
             this.txtDate.Size = new System.Drawing.Size(525, 29);
             this.txtDate.TabIndex = 1;
             this.txtDate.ValidatingType = typeof(System.DateTime);
+            this.txtDate.Validating += new System.ComponentModel.CancelEventHandler(this.txtDate_Validating);
             // 
             // txtDescription
             // 

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgTransactions = new System.Windows.Forms.DataGridView();
             this.colTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +95,7 @@
             this.dgTransactions.RowTemplate.Height = 28;
             this.dgTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTransactions.Size = new System.Drawing.Size(2904, 1092);
-            this.dgTransactions.TabIndex = 0;
+            this.dgTransactions.TabIndex = 11;
             this.dgTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTransactions_CellContentClick);
             // 
             // colTransactionID
@@ -150,8 +150,8 @@
             // colDeposit
             // 
             this.colDeposit.DataPropertyName = "Deposit";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle3;
             this.colDeposit.HeaderText = "Deposit";
             this.colDeposit.Name = "colDeposit";
             this.colDeposit.ReadOnly = true;
@@ -159,8 +159,8 @@
             // colAmountWithdrawal
             // 
             this.colAmountWithdrawal.DataPropertyName = "Withdrawal";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle4;
             this.colAmountWithdrawal.HeaderText = "Withdrawal";
             this.colAmountWithdrawal.Name = "colAmountWithdrawal";
             this.colAmountWithdrawal.ReadOnly = true;
@@ -252,6 +252,7 @@
             this.cboBank.Size = new System.Drawing.Size(354, 32);
             this.cboBank.TabIndex = 0;
             this.cboBank.ValueMember = "VendorID";
+            this.cboBank.Enter += new System.EventHandler(this.cboBank_Enter);
             // 
             // btnFilter
             // 
