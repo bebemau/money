@@ -32,13 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cboBank = new System.Windows.Forms.ComboBox();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTransactionID = new System.Windows.Forms.Label();
+            this.txtDate = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnSave
@@ -46,7 +46,7 @@
             this.btnSave.Location = new System.Drawing.Point(719, 414);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
@@ -75,15 +75,8 @@
             this.cboBank.Location = new System.Drawing.Point(312, 147);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(525, 32);
-            this.cboBank.TabIndex = 4;
+            this.cboBank.TabIndex = 0;
             this.cboBank.ValueMember = "VendorID";
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(312, 214);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(525, 29);
-            this.txtDate.TabIndex = 6;
             // 
             // label3
             // 
@@ -99,7 +92,7 @@
             this.txtAmount.Location = new System.Drawing.Point(312, 275);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(525, 29);
-            this.txtAmount.TabIndex = 8;
+            this.txtAmount.TabIndex = 2;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
@@ -118,7 +111,7 @@
             this.cboCategory.Location = new System.Drawing.Point(312, 336);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(525, 32);
-            this.cboCategory.TabIndex = 10;
+            this.cboCategory.TabIndex = 3;
             this.cboCategory.ValueMember = "CategoryID";
             // 
             // label5
@@ -138,17 +131,26 @@
             this.lblTransactionID.Size = new System.Drawing.Size(0, 25);
             this.lblTransactionID.TabIndex = 11;
             // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(312, 209);
+            this.txtDate.Mask = "00/00/0000";
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(525, 29);
+            this.txtDate.TabIndex = 1;
+            this.txtDate.ValidatingType = typeof(System.DateTime);
+            // 
             // frmDeposit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 545);
+            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.lblTransactionID);
             this.Controls.Add(this.cboCategory);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cboBank);
             this.Controls.Add(this.label2);
@@ -168,12 +170,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboBank;
-        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblTransactionID;
+        private System.Windows.Forms.MaskedTextBox txtDate;
     }
 }

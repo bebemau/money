@@ -249,7 +249,7 @@
             this.cboBank.Margin = new System.Windows.Forms.Padding(4);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(354, 32);
-            this.cboBank.TabIndex = 5;
+            this.cboBank.TabIndex = 0;
             this.cboBank.ValueMember = "VendorID";
             // 
             // btnFilter
@@ -269,8 +269,8 @@
             this.txtAmountTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmountTo.Name = "txtAmountTo";
             this.txtAmountTo.Size = new System.Drawing.Size(138, 29);
-            this.txtAmountTo.TabIndex = 13;
-            this.txtAmountTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountTo_KeyPress);
+            this.txtAmountTo.TabIndex = 7;
+            this.txtAmountTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // label5
             // 
@@ -301,7 +301,7 @@
             this.cboTransactionType.Margin = new System.Windows.Forms.Padding(4);
             this.cboTransactionType.Name = "cboTransactionType";
             this.cboTransactionType.Size = new System.Drawing.Size(354, 32);
-            this.cboTransactionType.TabIndex = 15;
+            this.cboTransactionType.TabIndex = 4;
             this.cboTransactionType.ValueMember = "VendorID";
             // 
             // label7
@@ -338,7 +338,7 @@
             this.cboStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(354, 32);
-            this.cboStatus.TabIndex = 19;
+            this.cboStatus.TabIndex = 8;
             this.cboStatus.ValueMember = "VendorID";
             // 
             // label9
@@ -357,7 +357,7 @@
             this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(354, 29);
-            this.txtDescription.TabIndex = 21;
+            this.txtDescription.TabIndex = 9;
             // 
             // label10
             // 
@@ -377,7 +377,7 @@
             this.cboCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(354, 32);
-            this.cboCategory.TabIndex = 22;
+            this.cboCategory.TabIndex = 5;
             this.cboCategory.ValueMember = "CategoryID";
             // 
             // cboVendor
@@ -388,7 +388,7 @@
             this.cboVendor.Margin = new System.Windows.Forms.Padding(4);
             this.cboVendor.Name = "cboVendor";
             this.cboVendor.Size = new System.Drawing.Size(354, 32);
-            this.cboVendor.TabIndex = 23;
+            this.cboVendor.TabIndex = 1;
             this.cboVendor.ValueMember = "VendorID";
             // 
             // txtDateFrom
@@ -398,17 +398,17 @@
             this.txtDateFrom.Mask = "00/00/0000";
             this.txtDateFrom.Name = "txtDateFrom";
             this.txtDateFrom.Size = new System.Drawing.Size(135, 29);
-            this.txtDateFrom.TabIndex = 24;
+            this.txtDateFrom.TabIndex = 2;
             this.txtDateFrom.ValidatingType = typeof(System.DateTime);
             // 
             // txtDateTo
             // 
-            this.txtDateTo.Location = new System.Drawing.Point(343, 128);
+            this.txtDateTo.Location = new System.Drawing.Point(344, 131);
             this.txtDateTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtDateTo.Mask = "00/00/0000";
             this.txtDateTo.Name = "txtDateTo";
             this.txtDateTo.Size = new System.Drawing.Size(135, 29);
-            this.txtDateTo.TabIndex = 25;
+            this.txtDateTo.TabIndex = 3;
             this.txtDateTo.ValidatingType = typeof(System.DateTime);
             // 
             // txtAmountFrom
@@ -417,15 +417,15 @@
             this.txtAmountFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmountFrom.Name = "txtAmountFrom";
             this.txtAmountFrom.Size = new System.Drawing.Size(138, 29);
-            this.txtAmountFrom.TabIndex = 12;
-            this.txtAmountFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmountFrom_KeyPress);
+            this.txtAmountFrom.TabIndex = 6;
+            this.txtAmountFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // btnGO
             // 
             this.btnGO.Location = new System.Drawing.Point(1241, 128);
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(148, 34);
-            this.btnGO.TabIndex = 26;
+            this.btnGO.TabIndex = 10;
             this.btnGO.Text = "Go";
             this.btnGO.UseVisualStyleBackColor = true;
             this.btnGO.Click += new System.EventHandler(this.btnGO_Click);

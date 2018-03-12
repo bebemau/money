@@ -89,7 +89,6 @@ namespace MoneyWin
 
                 SaveVendor(vendorModel);
             }
-            
         }
 
         private async void SaveVendor(tblVendor vendorModel)

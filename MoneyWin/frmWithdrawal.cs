@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using MoneyWin.Model;
 using MoneyWin.APIHelpers;
 using System.Net.Http;
+using MoneyData;
+using Common;
 
 namespace MoneyWin
 {
@@ -18,6 +20,11 @@ namespace MoneyWin
         TransactionModel formData = new TransactionModel();
         HttpClient _httpClient = new HttpClient();
         HttpClientHelper _clientHelper = new HttpClientHelper();
+
+        public frmWithdrawal()
+        {
+            InitializeComponent();
+        }
 
         public frmWithdrawal(TransactionModel data)
         {
@@ -85,9 +92,31 @@ namespace MoneyWin
             cboVendor.SelectedItem = vendors.Find(q => q.VendorID == vendorID);
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-
+            var transaction = new tblTransaction()
+            {
+                Amount = Convert.ToDouble(this.txtAmount),
+                BankID = cboBank.SelectedValue.ToString().ToNullableInt(),
+                CategoryID = cboCategory.SelectedValue.ToString().ToNullableInt(),
+                CheckNumber = txtCheckNumber.Text.ToNullableInt(),
+                DatePosted = txtDatePosted.Text.ToNullableDateTime(),
+                Description = txtDescription.Text,
+                TransactionDate = txtDate.Text.ToNullableDateTime(),
+                TransactionType = (int)TransactionType.Withdrawal,
+                TransactionID = Convert.ToInt32(lblTransactionID.Text),
+                VendorID = cboVendor.SelectedValue.ToString().ToNullableInt(),
+                Tax = txtTax.Text.ToNullableDouble()
+            };
         }
+
+        private void NumericFields_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
     }
 }

@@ -41,10 +41,10 @@
             // btnTransactions
             // 
             this.btnTransactions.Location = new System.Drawing.Point(204, 336);
-            this.btnTransactions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTransactions.Margin = new System.Windows.Forms.Padding(4);
             this.btnTransactions.Name = "btnTransactions";
             this.btnTransactions.Size = new System.Drawing.Size(142, 64);
-            this.btnTransactions.TabIndex = 0;
+            this.btnTransactions.TabIndex = 4;
             this.btnTransactions.Text = "Transactions";
             this.btnTransactions.UseVisualStyleBackColor = true;
             this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
@@ -64,7 +64,7 @@
             this.btnVendors.Margin = new System.Windows.Forms.Padding(4);
             this.btnVendors.Name = "btnVendors";
             this.btnVendors.Size = new System.Drawing.Size(142, 64);
-            this.btnVendors.TabIndex = 2;
+            this.btnVendors.TabIndex = 0;
             this.btnVendors.Text = "Vendors";
             this.btnVendors.UseVisualStyleBackColor = true;
             this.btnVendors.Click += new System.EventHandler(this.btnVendors_Click);
@@ -75,7 +75,7 @@
             this.btnCategories.Margin = new System.Windows.Forms.Padding(4);
             this.btnCategories.Name = "btnCategories";
             this.btnCategories.Size = new System.Drawing.Size(142, 64);
-            this.btnCategories.TabIndex = 3;
+            this.btnCategories.TabIndex = 1;
             this.btnCategories.Text = "Categories";
             this.btnCategories.UseVisualStyleBackColor = true;
             // 
@@ -85,7 +85,7 @@
             this.btnTransfers.Margin = new System.Windows.Forms.Padding(4);
             this.btnTransfers.Name = "btnTransfers";
             this.btnTransfers.Size = new System.Drawing.Size(142, 64);
-            this.btnTransfers.TabIndex = 4;
+            this.btnTransfers.TabIndex = 5;
             this.btnTransfers.Text = "Transfers";
             this.btnTransfers.UseVisualStyleBackColor = true;
             // 
@@ -95,7 +95,7 @@
             this.btnDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeposit.Name = "btnDeposit";
             this.btnDeposit.Size = new System.Drawing.Size(142, 64);
-            this.btnDeposit.TabIndex = 6;
+            this.btnDeposit.TabIndex = 3;
             this.btnDeposit.Text = "Deposit";
             this.btnDeposit.UseVisualStyleBackColor = true;
             // 
@@ -105,9 +105,10 @@
             this.btnWithdrawal.Margin = new System.Windows.Forms.Padding(4);
             this.btnWithdrawal.Name = "btnWithdrawal";
             this.btnWithdrawal.Size = new System.Drawing.Size(142, 64);
-            this.btnWithdrawal.TabIndex = 5;
+            this.btnWithdrawal.TabIndex = 2;
             this.btnWithdrawal.Text = "Withdrawal";
             this.btnWithdrawal.UseVisualStyleBackColor = true;
+            this.btnWithdrawal.Click += new System.EventHandler(this.btnWithdrawal_Click);
             // 
             // btnExit
             // 
@@ -115,7 +116,7 @@
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(368, 64);
-            this.btnExit.TabIndex = 7;
+            this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             // 
@@ -132,7 +133,7 @@
             this.Controls.Add(this.btnVendors);
             this.Controls.Add(this.lblBalance);
             this.Controls.Add(this.btnTransactions);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

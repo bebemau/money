@@ -192,15 +192,7 @@ namespace MoneyWin
 
         }
 
-        private void txtAmountFrom_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
-                e.Handled = false;
-            else
-                e.Handled = true;
-        }
-
-        private void txtAmountTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumericFields_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
                 e.Handled = false;

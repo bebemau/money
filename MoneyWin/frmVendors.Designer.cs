@@ -53,7 +53,7 @@
             this.txtSearchVendor.Location = new System.Drawing.Point(312, 46);
             this.txtSearchVendor.Name = "txtSearchVendor";
             this.txtSearchVendor.Size = new System.Drawing.Size(414, 29);
-            this.txtSearchVendor.TabIndex = 1;
+            this.txtSearchVendor.TabIndex = 0;
             this.txtSearchVendor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchVendor_OnKeyDown);
             // 
             // dgVendors

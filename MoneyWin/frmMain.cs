@@ -41,5 +41,11 @@ namespace MoneyWin
             var form = new frmVendors();
             form.Show();
         }
+
+        private void btnWithdrawal_Click(object sender, EventArgs e)
+        {
+            var form = new frmWithdrawal();
+            form.Show();
+        }
     }
 }

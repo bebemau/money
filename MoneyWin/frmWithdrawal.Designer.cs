@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTransactionID = new System.Windows.Forms.Label();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.txtCheckNumber = new System.Windows.Forms.TextBox();
             this.cboBank = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,6 +42,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtTax = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtDate = new System.Windows.Forms.MaskedTextBox();
+            this.txtDatePosted = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(87, 88);
+            this.label2.Location = new System.Drawing.Point(87, 100);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 25);
@@ -68,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(87, 150);
+            this.label3.Location = new System.Drawing.Point(87, 162);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 25);
@@ -84,27 +90,20 @@
             this.lblTransactionID.Size = new System.Drawing.Size(0, 25);
             this.lblTransactionID.TabIndex = 3;
             // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(315, 79);
-            this.txtDate.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(559, 29);
-            this.txtDate.TabIndex = 4;
-            // 
             // txtCheckNumber
             // 
-            this.txtCheckNumber.Location = new System.Drawing.Point(315, 142);
+            this.txtCheckNumber.Location = new System.Drawing.Point(315, 154);
             this.txtCheckNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(559, 29);
             this.txtCheckNumber.TabIndex = 5;
+            this.txtCheckNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // cboBank
             // 
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
-            this.cboBank.Location = new System.Drawing.Point(315, 212);
+            this.cboBank.Location = new System.Drawing.Point(315, 224);
             this.cboBank.Margin = new System.Windows.Forms.Padding(4);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(559, 32);
@@ -114,7 +113,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(87, 221);
+            this.label5.Location = new System.Drawing.Point(87, 233);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
@@ -124,19 +123,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(87, 290);
+            this.label4.Location = new System.Drawing.Point(87, 302);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 25);
             this.label4.TabIndex = 9;
             this.label4.Text = "Vendor";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // cboVendor
             // 
             this.cboVendor.DisplayMember = "VendorName";
             this.cboVendor.FormattingEnabled = true;
-            this.cboVendor.Location = new System.Drawing.Point(315, 281);
+            this.cboVendor.Location = new System.Drawing.Point(315, 293);
             this.cboVendor.Margin = new System.Windows.Forms.Padding(4);
             this.cboVendor.Name = "cboVendor";
             this.cboVendor.Size = new System.Drawing.Size(559, 32);
@@ -146,7 +144,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(87, 372);
+            this.label6.Location = new System.Drawing.Point(87, 384);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 25);
@@ -157,7 +155,7 @@
             // 
             this.cboCategory.DisplayMember = "Category";
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(315, 363);
+            this.cboCategory.Location = new System.Drawing.Point(315, 375);
             this.cboCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(559, 32);
@@ -167,7 +165,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(87, 446);
+            this.label7.Location = new System.Drawing.Point(87, 458);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 25);
@@ -176,26 +174,100 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(315, 442);
+            this.txtAmount.Location = new System.Drawing.Point(315, 454);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(559, 29);
             this.txtAmount.TabIndex = 14;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(717, 528);
+            this.btnSave.Location = new System.Drawing.Point(717, 736);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(157, 47);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(87, 592);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 25);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "DatePosted";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(315, 664);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(559, 29);
+            this.txtDescription.TabIndex = 19;
+            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(87, 668);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(109, 25);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Description";
+            // 
+            // txtTax
+            // 
+            this.txtTax.Location = new System.Drawing.Point(315, 521);
+            this.txtTax.Name = "txtTax";
+            this.txtTax.Size = new System.Drawing.Size(559, 29);
+            this.txtTax.TabIndex = 21;
+            this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(87, 525);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 25);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Tax";
+            // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(315, 96);
+            this.txtDate.Mask = "00/00/0000";
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(559, 29);
+            this.txtDate.TabIndex = 22;
+            this.txtDate.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtDatePosted
+            // 
+            this.txtDatePosted.Location = new System.Drawing.Point(315, 592);
+            this.txtDatePosted.Mask = "00/00/0000";
+            this.txtDatePosted.Name = "txtDatePosted";
+            this.txtDatePosted.Size = new System.Drawing.Size(559, 29);
+            this.txtDatePosted.TabIndex = 23;
+            this.txtDatePosted.ValidatingType = typeof(System.DateTime);
             // 
             // frmWithdrawal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 628);
+            this.ClientSize = new System.Drawing.Size(1027, 854);
+            this.Controls.Add(this.txtDatePosted);
+            this.Controls.Add(this.txtDate);
+            this.Controls.Add(this.txtTax);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.label7);
@@ -206,7 +278,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cboBank);
             this.Controls.Add(this.txtCheckNumber);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.lblTransactionID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -226,7 +297,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTransactionID;
-        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.TextBox txtCheckNumber;
         private System.Windows.Forms.ComboBox cboBank;
         private System.Windows.Forms.Label label5;
@@ -237,5 +307,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtTax;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.MaskedTextBox txtDate;
+        private System.Windows.Forms.MaskedTextBox txtDatePosted;
     }
 }
