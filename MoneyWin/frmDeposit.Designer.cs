@@ -39,16 +39,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblTransactionID = new System.Windows.Forms.Label();
             this.txtDate = new System.Windows.Forms.MaskedTextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(719, 414);
+            this.btnSave.Location = new System.Drawing.Point(719, 489);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label1
             // 
@@ -94,6 +97,7 @@
             this.txtAmount.Size = new System.Drawing.Size(525, 29);
             this.txtAmount.TabIndex = 2;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // label4
             // 
@@ -140,11 +144,30 @@
             this.txtDate.TabIndex = 1;
             this.txtDate.ValidatingType = typeof(System.DateTime);
             // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(312, 401);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(525, 29);
+            this.txtDescription.TabIndex = 4;
+            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(113, 401);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 25);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Description";
+            // 
             // frmDeposit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 545);
+            this.ClientSize = new System.Drawing.Size(1000, 640);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDate);
             this.Controls.Add(this.lblTransactionID);
             this.Controls.Add(this.cboCategory);
@@ -177,5 +200,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblTransactionID;
         private System.Windows.Forms.MaskedTextBox txtDate;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -34,18 +34,28 @@ namespace MoneyWin
         {
             var form = new frmTransactions();
             form.Show();
+            form.Controls["cboBank"].Focus();
         }
 
         private void btnVendors_Click(object sender, EventArgs e)
         {
             var form = new frmVendors();
             form.Show();
+            form.Controls["txtSearchVendor"].Focus();
         }
 
         private void btnWithdrawal_Click(object sender, EventArgs e)
         {
             var form = new frmWithdrawal();
             form.Show();
+            form.Controls["txtDate"].Focus();
+        }
+
+        private void btnDeposit_Click(object sender, EventArgs e)
+        {
+            var form = new frmDeposit();
+            form.Show();
+            form.Controls["txtDate"].Focus();
         }
     }
 }

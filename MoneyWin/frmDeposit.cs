@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using MoneyWin.Model;
 using MoneyWin.APIHelpers;
 using System.Net.Http;
+using MoneyData;
+using Common;
 
 namespace MoneyWin
 {
@@ -23,6 +25,11 @@ namespace MoneyWin
         {
             InitializeComponent();
             formData = data;
+        }
+
+        public frmDeposit()
+        {
+            InitializeComponent();
         }
 
         private async void frmDeposit_Load(object sender, EventArgs e)
@@ -71,6 +78,34 @@ namespace MoneyWin
             cboBank.DataSource = banks;
             cboBank.SelectedItem = banks.Find(q => q.VendorID == bankID);
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var transaction = new tblTransaction()
+            {
+                Amount = Convert.ToDouble(this.txtAmount),
+                BankID = cboBank.SelectedValue.ToString().ToNullableInt(),
+                CategoryID = cboCategory.SelectedValue.ToString().ToNullableInt(),
+                Description = txtDescription.Text,
+                TransactionDate = txtDate.Text.ToNullableDateTime(),
+                TransactionType = (int)TransactionType.Deposit,
+                TransactionID = string.IsNullOrEmpty(lblTransactionID.Text) ? 0 : Convert.ToInt32(lblTransactionID.Text),
+            };
+
+            var data = new TransactionData();
+            if (transaction.TransactionID == 0)
+                data.AddTransaction(transaction);
+            else
+                data.UpdateTransaction(transaction);
+        }
+
+        private void NumericFields_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || e.KeyChar == 46) //46=dot
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }

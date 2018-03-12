@@ -98,6 +98,7 @@
             this.btnDeposit.TabIndex = 3;
             this.btnDeposit.Text = "Deposit";
             this.btnDeposit.UseVisualStyleBackColor = true;
+            this.btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click);
             // 
             // btnWithdrawal
             // 
@@ -135,7 +136,7 @@
             this.Controls.Add(this.btnTransactions);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "Money Main Menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -104,10 +104,17 @@ namespace MoneyWin
                 Description = txtDescription.Text,
                 TransactionDate = txtDate.Text.ToNullableDateTime(),
                 TransactionType = (int)TransactionType.Withdrawal,
-                TransactionID = Convert.ToInt32(lblTransactionID.Text),
+                TransactionID = string.IsNullOrEmpty(lblTransactionID.Text) ? 0 : Convert.ToInt32(lblTransactionID.Text),
                 VendorID = cboVendor.SelectedValue.ToString().ToNullableInt(),
                 Tax = txtTax.Text.ToNullableDouble()
             };
+
+            var data = new TransactionData();
+            if (transaction.TransactionID == 0)
+                data.AddTransaction(transaction);
+            else
+                data.UpdateTransaction(transaction);
+
         }
 
         private void NumericFields_KeyPress(object sender, KeyPressEventArgs e)
