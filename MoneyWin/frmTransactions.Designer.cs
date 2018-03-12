@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgTransactions = new System.Windows.Forms.DataGridView();
             this.colTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,8 +150,8 @@
             // colDeposit
             // 
             this.colDeposit.DataPropertyName = "Deposit";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colDeposit.DefaultCellStyle = dataGridViewCellStyle9;
             this.colDeposit.HeaderText = "Deposit";
             this.colDeposit.Name = "colDeposit";
             this.colDeposit.ReadOnly = true;
@@ -159,8 +159,8 @@
             // colAmountWithdrawal
             // 
             this.colAmountWithdrawal.DataPropertyName = "Withdrawal";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colAmountWithdrawal.DefaultCellStyle = dataGridViewCellStyle10;
             this.colAmountWithdrawal.HeaderText = "Withdrawal";
             this.colAmountWithdrawal.Name = "colAmountWithdrawal";
             this.colAmountWithdrawal.ReadOnly = true;
@@ -243,6 +243,7 @@
             // cboBank
             // 
             this.cboBank.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBank.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
             this.cboBank.Location = new System.Drawing.Point(125, 14);
@@ -295,6 +296,7 @@
             // cboTransactionType
             // 
             this.cboTransactionType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboTransactionType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTransactionType.DisplayMember = "VendorName";
             this.cboTransactionType.FormattingEnabled = true;
             this.cboTransactionType.Location = new System.Drawing.Point(689, 16);
@@ -327,6 +329,7 @@
             // cboStatus
             // 
             this.cboStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboStatus.DisplayMember = "VendorName";
             this.cboStatus.FormattingEnabled = true;
             this.cboStatus.Items.AddRange(new object[] {
@@ -371,6 +374,8 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCategory.DisplayMember = "Category";
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(689, 70);
@@ -382,6 +387,8 @@
             // 
             // cboVendor
             // 
+            this.cboVendor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVendor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVendor.DisplayMember = "VendorName";
             this.cboVendor.FormattingEnabled = true;
             this.cboVendor.Location = new System.Drawing.Point(125, 70);
@@ -422,9 +429,9 @@
             // 
             // btnGO
             // 
-            this.btnGO.Location = new System.Drawing.Point(1241, 128);
+            this.btnGO.Location = new System.Drawing.Point(1664, 17);
             this.btnGO.Name = "btnGO";
-            this.btnGO.Size = new System.Drawing.Size(148, 34);
+            this.btnGO.Size = new System.Drawing.Size(166, 140);
             this.btnGO.TabIndex = 10;
             this.btnGO.Text = "Go";
             this.btnGO.UseVisualStyleBackColor = true;

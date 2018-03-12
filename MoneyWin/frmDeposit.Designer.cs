@@ -41,11 +41,13 @@
             this.txtDate = new System.Windows.Forms.MaskedTextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtDatePosted = new System.Windows.Forms.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(719, 489);
+            this.btnSave.Location = new System.Drawing.Point(719, 545);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
             this.btnSave.TabIndex = 5;
@@ -56,7 +58,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(113, 86);
+            this.label1.Location = new System.Drawing.Point(113, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 25);
             this.label1.TabIndex = 1;
@@ -65,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(113, 147);
+            this.label2.Location = new System.Drawing.Point(113, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 25);
             this.label2.TabIndex = 3;
@@ -73,9 +75,11 @@
             // 
             // cboBank
             // 
+            this.cboBank.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBank.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
-            this.cboBank.Location = new System.Drawing.Point(312, 147);
+            this.cboBank.Location = new System.Drawing.Point(312, 131);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(525, 32);
             this.cboBank.TabIndex = 0;
@@ -84,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 214);
+            this.label3.Location = new System.Drawing.Point(113, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 25);
             this.label3.TabIndex = 5;
@@ -92,7 +96,7 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(312, 275);
+            this.txtAmount.Location = new System.Drawing.Point(312, 259);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(525, 29);
             this.txtAmount.TabIndex = 2;
@@ -102,7 +106,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(113, 275);
+            this.label4.Location = new System.Drawing.Point(113, 259);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 25);
             this.label4.TabIndex = 7;
@@ -110,9 +114,11 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCategory.DisplayMember = "Category";
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(312, 336);
+            this.cboCategory.Location = new System.Drawing.Point(312, 320);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(525, 32);
             this.cboCategory.TabIndex = 3;
@@ -121,7 +127,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(113, 336);
+            this.label5.Location = new System.Drawing.Point(113, 320);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 25);
             this.label5.TabIndex = 9;
@@ -130,14 +136,14 @@
             // lblTransactionID
             // 
             this.lblTransactionID.AutoSize = true;
-            this.lblTransactionID.Location = new System.Drawing.Point(317, 86);
+            this.lblTransactionID.Location = new System.Drawing.Point(317, 70);
             this.lblTransactionID.Name = "lblTransactionID";
             this.lblTransactionID.Size = new System.Drawing.Size(0, 25);
             this.lblTransactionID.TabIndex = 11;
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(312, 209);
+            this.txtDate.Location = new System.Drawing.Point(312, 193);
             this.txtDate.Mask = "00/00/0000";
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(525, 29);
@@ -146,7 +152,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(312, 401);
+            this.txtDescription.Location = new System.Drawing.Point(312, 385);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(525, 29);
             this.txtDescription.TabIndex = 4;
@@ -155,17 +161,37 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(113, 401);
+            this.label6.Location = new System.Drawing.Point(113, 385);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 25);
             this.label6.TabIndex = 13;
             this.label6.Text = "Description";
+            // 
+            // txtDatePosted
+            // 
+            this.txtDatePosted.Location = new System.Drawing.Point(312, 445);
+            this.txtDatePosted.Mask = "00/00/0000";
+            this.txtDatePosted.Name = "txtDatePosted";
+            this.txtDatePosted.Size = new System.Drawing.Size(525, 29);
+            this.txtDatePosted.TabIndex = 14;
+            this.txtDatePosted.ValidatingType = typeof(System.DateTime);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(113, 450);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 25);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "DatePosted";
             // 
             // frmDeposit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 640);
+            this.Controls.Add(this.txtDatePosted);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDate);
@@ -202,5 +228,7 @@
         private System.Windows.Forms.MaskedTextBox txtDate;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox txtDatePosted;
+        private System.Windows.Forms.Label label7;
     }
 }

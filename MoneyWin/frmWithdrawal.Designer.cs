@@ -96,18 +96,20 @@
             this.txtCheckNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(559, 29);
-            this.txtCheckNumber.TabIndex = 5;
+            this.txtCheckNumber.TabIndex = 1;
             this.txtCheckNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // cboBank
             // 
+            this.cboBank.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBank.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
             this.cboBank.Location = new System.Drawing.Point(315, 224);
             this.cboBank.Margin = new System.Windows.Forms.Padding(4);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(559, 32);
-            this.cboBank.TabIndex = 6;
+            this.cboBank.TabIndex = 2;
             this.cboBank.ValueMember = "VendorID";
             // 
             // label5
@@ -132,13 +134,15 @@
             // 
             // cboVendor
             // 
+            this.cboVendor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVendor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVendor.DisplayMember = "VendorName";
             this.cboVendor.FormattingEnabled = true;
             this.cboVendor.Location = new System.Drawing.Point(315, 293);
             this.cboVendor.Margin = new System.Windows.Forms.Padding(4);
             this.cboVendor.Name = "cboVendor";
             this.cboVendor.Size = new System.Drawing.Size(559, 32);
-            this.cboVendor.TabIndex = 8;
+            this.cboVendor.TabIndex = 3;
             this.cboVendor.ValueMember = "VendorID";
             // 
             // label6
@@ -153,13 +157,15 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCategory.DisplayMember = "Category";
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(315, 375);
             this.cboCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(559, 32);
-            this.cboCategory.TabIndex = 10;
+            this.cboCategory.TabIndex = 4;
             this.cboCategory.ValueMember = "CategoryID";
             // 
             // label7
@@ -177,7 +183,7 @@
             this.txtAmount.Location = new System.Drawing.Point(315, 454);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(559, 29);
-            this.txtAmount.TabIndex = 14;
+            this.txtAmount.TabIndex = 5;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
@@ -186,7 +192,7 @@
             this.btnSave.Location = new System.Drawing.Point(717, 736);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(157, 47);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -206,7 +212,7 @@
             this.txtDescription.Location = new System.Drawing.Point(315, 664);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(559, 29);
-            this.txtDescription.TabIndex = 19;
+            this.txtDescription.TabIndex = 8;
             this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
@@ -224,7 +230,7 @@
             this.txtTax.Location = new System.Drawing.Point(315, 521);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(559, 29);
-            this.txtTax.TabIndex = 21;
+            this.txtTax.TabIndex = 6;
             this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
@@ -244,7 +250,7 @@
             this.txtDate.Mask = "00/00/0000";
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(559, 29);
-            this.txtDate.TabIndex = 22;
+            this.txtDate.TabIndex = 0;
             this.txtDate.ValidatingType = typeof(System.DateTime);
             // 
             // txtDatePosted
@@ -253,7 +259,7 @@
             this.txtDatePosted.Mask = "00/00/0000";
             this.txtDatePosted.Name = "txtDatePosted";
             this.txtDatePosted.Size = new System.Drawing.Size(559, 29);
-            this.txtDatePosted.TabIndex = 23;
+            this.txtDatePosted.TabIndex = 7;
             this.txtDatePosted.ValidatingType = typeof(System.DateTime);
             // 
             // frmWithdrawal

@@ -25,11 +25,11 @@ namespace MoneyData
             return result;
         }
 
-        public string AddTransaction(tblTransaction transaction)
+        public Int32 AddTransaction(tblTransaction transaction)
         {
             moneyContext.tblTransactions.Add(transaction);
             moneyContext.SaveChanges();
-            return string.Empty;
+            return transaction.TransactionID;
         }
 
         public string UpdateTransaction(tblTransaction input)

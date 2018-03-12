@@ -94,24 +94,25 @@ namespace MoneyWin
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var transaction = new tblTransaction()
-            {
-                Amount = Convert.ToDouble(this.txtAmount),
-                BankID = cboBank.SelectedValue.ToString().ToNullableInt(),
-                CategoryID = cboCategory.SelectedValue.ToString().ToNullableInt(),
-                CheckNumber = txtCheckNumber.Text.ToNullableInt(),
-                DatePosted = txtDatePosted.Text.ToNullableDateTime(),
-                Description = txtDescription.Text,
-                TransactionDate = txtDate.Text.ToNullableDateTime(),
-                TransactionType = (int)TransactionType.Withdrawal,
-                TransactionID = string.IsNullOrEmpty(lblTransactionID.Text) ? 0 : Convert.ToInt32(lblTransactionID.Text),
-                VendorID = cboVendor.SelectedValue.ToString().ToNullableInt(),
-                Tax = txtTax.Text.ToNullableDouble()
-            };
+            var transaction = new tblTransaction();
+            transaction.Amount = Convert.ToDouble(this.txtAmount.Text);
+            transaction.BankID = cboBank.SelectedValue.ToString().ToNullableInt();
+            transaction.CategoryID = cboCategory.SelectedValue.ToString().ToNullableInt();
+            transaction.CheckNumber = txtCheckNumber.Text.ToNullableInt();
+            transaction.DatePosted = txtDatePosted.Text.ToNullableDateTime();
+            transaction.Description = txtDescription.Text;
+            transaction.TransactionDate = txtDate.Text.ToNullableDateTime();
+            transaction.TransactionType = (int)TransactionType.Withdrawal;
+            transaction.TransactionID = string.IsNullOrEmpty(lblTransactionID.Text) ? 0 : Convert.ToInt32(lblTransactionID.Text);
+            transaction.VendorID = cboVendor.SelectedValue.ToString().ToNullableInt();
+            transaction.Tax = txtTax.Text.ToNullableDouble();
 
             var data = new TransactionData();
             if (transaction.TransactionID == 0)
-                data.AddTransaction(transaction);
+            {
+                var id = data.AddTransaction(transaction);
+                this.lblTransactionID.Text = id.ToString();
+            }
             else
                 data.UpdateTransaction(transaction);
 
