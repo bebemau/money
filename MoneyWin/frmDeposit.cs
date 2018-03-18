@@ -118,7 +118,7 @@ namespace MoneyWin
 
         private void txtDatePosted_Validating(object sender, CancelEventArgs e)
         {
-            if (!txtDatePosted.MaskCompleted)
+            if (!txtDatePosted.MaskCompleted && !string.IsNullOrEmpty(txtDatePosted.Text))
                 e.Cancel = true;
         }
     }

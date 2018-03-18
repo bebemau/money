@@ -68,5 +68,25 @@ namespace MoneyWin.APIHelpers
             }
             return returnobj;
         }
+
+        public static async Task<TResponse> PostListOfObjectsGetSingle<TRequest, TResponse>(TRequest request, string uri, HttpClient client)
+        {
+            try
+            {
+                var response = await client.PostAsJsonAsync(uri, request);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<TResponse>(content);
+                    return (TResponse)Convert.ChangeType(result, typeof(TResponse));
+                }
+            }
+            catch
+            {
+                return default(TResponse);
+            }
+
+            return default(TResponse);
+        }
     }
 }

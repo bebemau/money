@@ -11,31 +11,35 @@ namespace MoneyData
     {
         MoneyEntities moneyContext = new MoneyEntities();
 
-        public Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>> GetPayments(string withDetails = "", string paymentID = "", string bankID ="", string vendorID="", string paymentAmount="", string paymentDate="")
+        public Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>> GetPayments(string withDetails = "", string paymentID = "", string vendorFromID ="", string vendorToID="", string paymentAmount="", string paymentDateFrom="", string paymentDateTo ="")
         {
             int? paymentIDNew = paymentID.ToNullableInt();
-            int? bankIDNew = bankID.ToNullableInt();
-            int? vendorIDNew = vendorID.ToNullableInt();
+            int? vendorFromIDNew = vendorFromID.ToNullableInt();
+            int? vendorToIDNew = vendorToID.ToNullableInt();
             double? paymentAmountNew = paymentAmount.ToNullableDouble();
-            DateTime? paymentDateNew = paymentDate.ToNullableDateTime();
+            DateTime? paymentDateFromNew = paymentDateFrom.ToNullableDateTime();
+            DateTime? paymentDateToNew = paymentDateTo.ToNullableDateTime();
             bool withDetailsNew = withDetails == "1" ? true : false;
 
             if (!string.IsNullOrEmpty(paymentID) && paymentIDNew == null)
                 return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentID is not in valid format", null, null);
 
-            if (!string.IsNullOrEmpty(bankID) && bankIDNew ==null)
-                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("BankID is not in valid format", null, null);
+            if (!string.IsNullOrEmpty(vendorFromID) && vendorFromIDNew ==null)
+                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("FromVendor is not in valid format", null, null);
 
-            if (!string.IsNullOrEmpty(vendorID) && vendorIDNew ==null)
-                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("VendorID is not in valid format", null, null);
+            if (!string.IsNullOrEmpty(vendorToID) && vendorToIDNew ==null)
+                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("ToVendor is not in valid format", null, null);
 
             if (!string.IsNullOrEmpty(paymentAmount) && paymentAmountNew==null)
                 return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentAmount is not in valid format", null, null);
 
-            if (!string.IsNullOrEmpty(paymentDate) && paymentDateNew==null)
-                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentDate is not in valid format", null, null);
+            if (!string.IsNullOrEmpty(paymentDateFrom) && paymentDateFromNew==null)
+                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentDateFrom is not in valid format", null, null);
 
-            var result = moneyContext.DisplayPayments(paymentIDNew, bankIDNew, vendorIDNew, paymentAmountNew, paymentDateNew);
+            if (!string.IsNullOrEmpty(paymentDateTo) && paymentDateToNew == null)
+                return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>("PaymentDateTo is not in valid format", null, null);
+
+            var result = moneyContext.DisplayPayments(paymentIDNew, vendorFromIDNew, vendorToIDNew, paymentAmountNew, paymentDateFromNew, paymentDateToNew);
 
             if (withDetailsNew)
                 return new Tuple<string, List<DisplayPayments_Result>, List<DisplayPaymentDetails_Result>>(string.Empty, result.ToList(), null);

@@ -89,6 +89,7 @@
             this.btnTransfers.TabIndex = 5;
             this.btnTransfers.Text = "Transfers";
             this.btnTransfers.UseVisualStyleBackColor = true;
+            this.btnTransfers.Click += new System.EventHandler(this.btnTransfers_Click);
             // 
             // btnDeposit
             // 

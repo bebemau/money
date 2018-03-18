@@ -47,6 +47,9 @@ namespace MoneyWin
 
             this.WindowState = FormWindowState.Maximized;
 
+            cboBank.Focus();
+
+
         }
 
         private async Task PopulateCategories()

@@ -50,7 +50,7 @@
             this.btnSave.Location = new System.Drawing.Point(719, 545);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(118, 44);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -174,7 +174,7 @@
             this.txtDatePosted.Mask = "00/00/0000";
             this.txtDatePosted.Name = "txtDatePosted";
             this.txtDatePosted.Size = new System.Drawing.Size(525, 29);
-            this.txtDatePosted.TabIndex = 14;
+            this.txtDatePosted.TabIndex = 5;
             this.txtDatePosted.ValidatingType = typeof(System.DateTime);
             // 
             // label7

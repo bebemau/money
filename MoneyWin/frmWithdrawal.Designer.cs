@@ -64,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(87, 100);
+            this.label2.Location = new System.Drawing.Point(87, 175);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 25);
@@ -74,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(87, 162);
+            this.label3.Location = new System.Drawing.Point(87, 237);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 25);
@@ -92,11 +92,11 @@
             // 
             // txtCheckNumber
             // 
-            this.txtCheckNumber.Location = new System.Drawing.Point(315, 154);
+            this.txtCheckNumber.Location = new System.Drawing.Point(315, 229);
             this.txtCheckNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(559, 29);
-            this.txtCheckNumber.TabIndex = 1;
+            this.txtCheckNumber.TabIndex = 2;
             this.txtCheckNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericFields_KeyPress);
             // 
             // cboBank
@@ -105,17 +105,17 @@
             this.cboBank.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBank.DisplayMember = "VendorName";
             this.cboBank.FormattingEnabled = true;
-            this.cboBank.Location = new System.Drawing.Point(315, 224);
+            this.cboBank.Location = new System.Drawing.Point(315, 101);
             this.cboBank.Margin = new System.Windows.Forms.Padding(4);
             this.cboBank.Name = "cboBank";
             this.cboBank.Size = new System.Drawing.Size(559, 32);
-            this.cboBank.TabIndex = 2;
+            this.cboBank.TabIndex = 0;
             this.cboBank.ValueMember = "VendorID";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(87, 233);
+            this.label5.Location = new System.Drawing.Point(87, 110);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
@@ -246,11 +246,11 @@
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(315, 96);
+            this.txtDate.Location = new System.Drawing.Point(315, 171);
             this.txtDate.Mask = "00/00/0000";
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(559, 29);
-            this.txtDate.TabIndex = 0;
+            this.txtDate.TabIndex = 1;
             this.txtDate.ValidatingType = typeof(System.DateTime);
             this.txtDate.Validating += new System.ComponentModel.CancelEventHandler(this.txtDate_Validating);
             // 

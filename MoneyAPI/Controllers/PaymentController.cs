@@ -31,11 +31,11 @@ namespace MoneyAPI.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Payments")]
-        public PaymentResponseModel GetPayments(string withDetails = "", string paymentID = "", string bankID = "", string vendorID = "")
+        public PaymentResponseModel GetPayments(GetPaymentsRequestModel request)
         {
-            var input = dataTier.GetPayments(withDetails, paymentID, vendorID);
+            var input = dataTier.GetPayments(request.WithDetails, request.PaymentID, request.VendorFromID, request.VendorToID, request.PaymentAmount, request.DateFrom, request.DateTo  );
             var result = new PaymentResponseModel();
             result.Message = input.Item1;
             result.PaymentData = input.Item2;

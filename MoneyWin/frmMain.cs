@@ -34,7 +34,6 @@ namespace MoneyWin
         {
             var form = new frmTransactions();
             form.Show();
-            form.Controls["cboBank"].Focus();
         }
 
         private void btnVendors_Click(object sender, EventArgs e)
@@ -48,14 +47,14 @@ namespace MoneyWin
         {
             var form = new frmWithdrawal();
             form.Show();
-            form.Controls["txtDate"].Focus();
+            form.Controls["cboBank"].Focus();
         }
 
         private void btnDeposit_Click(object sender, EventArgs e)
         {
             var form = new frmDeposit();
             form.Show();
-            form.Controls["txtDate"].Focus();
+            form.Controls["cboBank"].Focus();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -66,6 +65,12 @@ namespace MoneyWin
         private void btnCategories_Click(object sender, EventArgs e)
         {
             var form = new frmCategory();
+            form.Show();
+        }
+
+        private void btnTransfers_Click(object sender, EventArgs e)
+        {
+            var form = new frmTransfers();
             form.Show();
         }
     }
