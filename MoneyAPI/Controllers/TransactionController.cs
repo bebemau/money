@@ -35,7 +35,7 @@ namespace MoneyAPI.Controllers
         [Route("GetTransactions")]
         public List<MoneyData.DisplayTransactions_Result> GetTransactions(GetTransactionRequestModel request)
         {
-            return transactionData.GetTransactions(request.TransactionID, request.DateFrom, request.DateTo, request.BankID, request.VendorID, request.AmountFrom, request.AmountTo, request.Description, request.CategoryID);
+            return transactionData.GetTransactions(request.TransactionID, request.DateFrom, request.DateTo, request.BankID, request.VendorID, request.AmountFrom, request.AmountTo, request.Description, request.CategoryID, request.OpenStatus);
         }
 
         [HttpPost]

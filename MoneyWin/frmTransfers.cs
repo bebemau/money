@@ -79,5 +79,25 @@ namespace MoneyWin
         {
             ((MaskedTextBox)sender).SelectAll();
         }
+
+        private void dgTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgResults.CurrentRow;
+
+            var data = new MoneyData.DisplayPayments_Result();
+            data.TransactionID = Convert.ToInt32(row.Cells[colTransactionID.Index].Value);
+            data.BankID = Convert.ToInt32(row.Cells[colBankID.Index].Value);
+            data.BillID = Convert.ToInt32(row.Cells[colBillID.Index].Value);
+            data.CCBank = Convert.ToInt32(row.Cells[colCCBank.Index].Value);
+            data.PaymentDate= Convert.ToDateTime(row.Cells[colPaymentDate.Index].Value);
+            data.PaymentDescription= row.Cells[colPaymentDescription.Index].Value.ToString();
+            data.PaymentID= Convert.ToInt32(row.Cells[colPaymentID.Index].Value);
+            data.ScheduledTransfer= Convert.ToBoolean(row.Cells[colScheduledTransfer.Index].Value);
+            data.TransferAmount= Convert.ToDouble(row.Cells[colTransferAMount.Index].Value);
+            data.Type= Convert.ToInt32(row.Cells[colType.Index].Value);
+            
+            var form = new frmPayment(data);
+            form.Show();
+        }
     }
 }

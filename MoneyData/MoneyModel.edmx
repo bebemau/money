@@ -160,6 +160,7 @@
           <Parameter Name="AmountTo" Type="float" Mode="In" />
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
           <Parameter Name="CategoryID" Type="int" Mode="In" />
+          <Parameter Name="OpenStatus" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="MoneyModelStoreContainer">
           <EntitySet Name="tblBill" EntityType="Self.tblBill" Schema="dbo" store:Type="Tables" />
@@ -323,6 +324,14 @@
           <FunctionImport Name="DisplayPaymentDetails" ReturnType="Collection(MoneyModel.DisplayPaymentDetails_Result)">
           <Parameter Name="PaymentID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="DisplayPayments" ReturnType="Collection(MoneyModel.DisplayPayments_Result)">
+            <Parameter Name="PaymentID" Mode="In" Type="Int32" />
+            <Parameter Name="BankID" Mode="In" Type="Int32" />
+            <Parameter Name="VendorID" Mode="In" Type="Int32" />
+            <Parameter Name="PaymentAmount" Mode="In" Type="Double" />
+            <Parameter Name="PaymentDateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="PaymentDateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="DisplayTransactions" ReturnType="Collection(MoneyModel.DisplayTransactions_Result)">
             <Parameter Name="TransactionID" Mode="In" Type="Int32" />
             <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
@@ -333,14 +342,7 @@
             <Parameter Name="AmountTo" Mode="In" Type="Double" />
             <Parameter Name="Description" Mode="In" Type="String" />
             <Parameter Name="CategoryID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="DisplayPayments" ReturnType="Collection(MoneyModel.DisplayPayments_Result)">
-            <Parameter Name="PaymentID" Mode="In" Type="Int32" />
-            <Parameter Name="BankID" Mode="In" Type="Int32" />
-            <Parameter Name="VendorID" Mode="In" Type="Int32" />
-            <Parameter Name="PaymentAmount" Mode="In" Type="Double" />
-            <Parameter Name="PaymentDateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="PaymentDateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="OpenStatus" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="DisplayBills_Result">
@@ -376,6 +378,20 @@
           <Property Type="Int32" Name="PaymentDetailID" Nullable="false" />
           <Property Type="Int32" Name="TransactionID" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="DisplayPayments_Result">
+          <Property Type="Int32" Name="PaymentID" Nullable="false" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="BankID" Nullable="true" />
+          <Property Type="Int32" Name="CCBank" Nullable="true" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CCBankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaymentDescription" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="TransferAmount" Nullable="true" />
+          <Property Type="Int32" Name="TransactionID" Nullable="true" />
+          <Property Type="Int32" Name="BillID" Nullable="true" />
+          <Property Type="Int32" Name="Type" Nullable="true" />
+          <Property Type="Boolean" Name="ScheduledTransfer" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="DisplayTransactions_Result">
           <Property Type="Int32" Name="TransactionID" Nullable="false" />
           <Property Type="DateTime" Name="TransactionDate" Nullable="true" Precision="23" />
@@ -396,20 +412,6 @@
           <Property Type="Boolean" Name="PaidCC" Nullable="false" />
           <Property Type="Double" Name="Tax" Nullable="true" />
           <Property Type="Boolean" Name="ForeignTransaction" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="DisplayPayments_Result">
-          <Property Type="Int32" Name="PaymentID" Nullable="false" />
-          <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="BankID" Nullable="true" />
-          <Property Type="Int32" Name="CCBank" Nullable="true" />
-          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CCBankName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PaymentDescription" Nullable="true" MaxLength="200" />
-          <Property Type="Double" Name="TransferAmount" Nullable="true" />
-          <Property Type="Int32" Name="TransactionID" Nullable="true" />
-          <Property Type="Int32" Name="BillID" Nullable="true" />
-          <Property Type="Int32" Name="Type" Nullable="true" />
-          <Property Type="Boolean" Name="ScheduledTransfer" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -598,6 +600,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayPayments" FunctionName="MoneyModel.Store.DisplayPayments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoneyModel.DisplayPayments_Result">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="CCBank" ColumnName="CCBank" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CCBankName" ColumnName="CCBankName" />
+                <ScalarProperty Name="PaymentDescription" ColumnName="PaymentDescription" />
+                <ScalarProperty Name="TransferAmount" ColumnName="TransferAmount" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ScheduledTransfer" ColumnName="ScheduledTransfer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DisplayTransactions" FunctionName="MoneyModel.Store.DisplayTransactions">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MoneyModel.DisplayTransactions_Result">
@@ -620,24 +640,6 @@
                 <ScalarProperty Name="PaidCC" ColumnName="PaidCC" />
                 <ScalarProperty Name="Tax" ColumnName="Tax" />
                 <ScalarProperty Name="ForeignTransaction" ColumnName="ForeignTransaction" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="DisplayPayments" FunctionName="MoneyModel.Store.DisplayPayments">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MoneyModel.DisplayPayments_Result">
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="CCBank" ColumnName="CCBank" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="CCBankName" ColumnName="CCBankName" />
-                <ScalarProperty Name="PaymentDescription" ColumnName="PaymentDescription" />
-                <ScalarProperty Name="TransferAmount" ColumnName="TransferAmount" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ScheduledTransfer" ColumnName="ScheduledTransfer" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

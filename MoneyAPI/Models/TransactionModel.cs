@@ -17,5 +17,6 @@ namespace MoneyAPI.Models
         public string AmountTo { get; set; }
         public string Description { get; set; }
         public string CategoryID { get; set; }
+        public string OpenStatus { get; set; }
     }
 }

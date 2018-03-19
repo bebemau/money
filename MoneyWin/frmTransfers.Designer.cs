@@ -160,6 +160,7 @@
             this.dgResults.RowTemplate.Height = 31;
             this.dgResults.Size = new System.Drawing.Size(2218, 931);
             this.dgResults.TabIndex = 9;
+            this.dgResults.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTransactions_CellContentClick);
             // 
             // colPaymentID
             // 
