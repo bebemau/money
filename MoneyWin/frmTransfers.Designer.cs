@@ -39,17 +39,16 @@
             this.txtDateTo = new System.Windows.Forms.MaskedTextBox();
             this.dgResults = new System.Windows.Forms.DataGridView();
             this.colPaymentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPaymentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCCBank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCCBankName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPaymentDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTransferAMount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTransferAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colScheduledTransfer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPaymentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,17 +143,16 @@
             this.dgResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPaymentID,
+            this.colPaymentDate,
             this.colBankID,
             this.colCCBank,
             this.colBankName,
             this.colCCBankName,
             this.colPaymentDescription,
-            this.colTransferAMount,
+            this.colTransferAmount,
             this.colTransactionID,
             this.colBillID,
-            this.colType,
-            this.colScheduledTransfer,
-            this.colPaymentDate});
+            this.colType});
             this.dgResults.Location = new System.Drawing.Point(33, 173);
             this.dgResults.Name = "dgResults";
             this.dgResults.RowTemplate.Height = 31;
@@ -167,6 +165,12 @@
             this.colPaymentID.DataPropertyName = "PaymentID";
             this.colPaymentID.HeaderText = "PaymentID";
             this.colPaymentID.Name = "colPaymentID";
+            // 
+            // colPaymentDate
+            // 
+            this.colPaymentDate.DataPropertyName = "PaymentDate";
+            this.colPaymentDate.HeaderText = "PaymentDate";
+            this.colPaymentDate.Name = "colPaymentDate";
             // 
             // colBankID
             // 
@@ -195,14 +199,14 @@
             // colPaymentDescription
             // 
             this.colPaymentDescription.DataPropertyName = "PaymentDescription";
-            this.colPaymentDescription.HeaderText = "Description";
+            this.colPaymentDescription.HeaderText = "PaymentDescription";
             this.colPaymentDescription.Name = "colPaymentDescription";
             // 
-            // colTransferAMount
+            // colTransferAmount
             // 
-            this.colTransferAMount.DataPropertyName = "TransferAmount";
-            this.colTransferAMount.HeaderText = "Amount";
-            this.colTransferAMount.Name = "colTransferAMount";
+            this.colTransferAmount.DataPropertyName = "TransferAmount";
+            this.colTransferAmount.HeaderText = "Amount";
+            this.colTransferAmount.Name = "colTransferAmount";
             // 
             // colTransactionID
             // 
@@ -221,18 +225,6 @@
             this.colType.DataPropertyName = "Type";
             this.colType.HeaderText = "Type";
             this.colType.Name = "colType";
-            // 
-            // colScheduledTransfer
-            // 
-            this.colScheduledTransfer.DataPropertyName = "ScheduledTransfer";
-            this.colScheduledTransfer.HeaderText = "ScheduledTransfer";
-            this.colScheduledTransfer.Name = "colScheduledTransfer";
-            // 
-            // colPaymentDate
-            // 
-            this.colPaymentDate.DataPropertyName = "PaymentDate";
-            this.colPaymentDate.HeaderText = "PaymentDate";
-            this.colPaymentDate.Name = "colPaymentDate";
             // 
             // frmTransfers
             // 
@@ -271,16 +263,15 @@
         private System.Windows.Forms.MaskedTextBox txtDateTo;
         private System.Windows.Forms.DataGridView dgResults;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPaymentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPaymentDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBankID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCCBank;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBankName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCCBankName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPaymentDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTransferAMount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTransferAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTransactionID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBillID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colScheduledTransfer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPaymentDate;
     }
 }

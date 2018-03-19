@@ -27,6 +27,9 @@ namespace MoneyWin
         {
             _client = _clientHelper.GetClient();
 
+            dgResults.AutoGenerateColumns = false;
+            dgResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             await PopulateVendors();
             this.WindowState = FormWindowState.Maximized;
 
@@ -92,8 +95,7 @@ namespace MoneyWin
             data.PaymentDate= Convert.ToDateTime(row.Cells[colPaymentDate.Index].Value);
             data.PaymentDescription= row.Cells[colPaymentDescription.Index].Value.ToString();
             data.PaymentID= Convert.ToInt32(row.Cells[colPaymentID.Index].Value);
-            data.ScheduledTransfer= Convert.ToBoolean(row.Cells[colScheduledTransfer.Index].Value);
-            data.TransferAmount= Convert.ToDouble(row.Cells[colTransferAMount.Index].Value);
+            data.TransferAmount= Convert.ToDouble(row.Cells[colTransferAmount.Index].Value);
             data.Type= Convert.ToInt32(row.Cells[colType.Index].Value);
             
             var form = new frmPayment(data);

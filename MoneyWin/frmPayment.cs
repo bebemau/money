@@ -30,15 +30,21 @@ namespace MoneyWin
             _formData = data;
         }
 
-        private void frmPayment_Load(object sender, EventArgs e)
+        private async void frmPayment_Load(object sender, EventArgs e)
         {
             _client = _clientHelper.GetClient();
+
+            this.txtAmount.Text = _formData.TransferAmount.ToString();
+            this.txtDescription.Text = _formData.PaymentDescription.ToString();
+            this.txtTransferDate.Text = _formData.PaymentDate.ToString();
+            await PopulateVendors(_formData.BankID.ToString(), _formData.CCBank.ToString());
 
             dgSelected.AutoGenerateColumns = false;
             dgSelected.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgTransactions.AutoGenerateColumns = false;
             dgTransactions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -46,7 +52,7 @@ namespace MoneyWin
 
         }
 
-        private async Task PopulateVendors()
+        private async Task PopulateVendors(string fromID = "", string toID = "")
         {
             var vendorsAll = await RESTHelper.GetListOfObjects<VendorResponseModel>("api/vendor/GetVendors", _client);
             var banks = vendorsAll.Where(a => a.IsBank.ToLower() == "true").ToList();
@@ -59,6 +65,8 @@ namespace MoneyWin
                 }
             );
             cboFrom.DataSource = banks;
+            if(!string.IsNullOrEmpty(fromID))
+                cboFrom.SelectedItem = banks.Find(q => q.VendorID == fromID);
 
             var emptyVendor = new VendorResponseModel() { VendorID = "", VendorName = "-- No Filter --" };
             vendorsAll.Add(emptyVendor);
@@ -69,6 +77,8 @@ namespace MoneyWin
                 }
             );
             cboTo.DataSource = vendorsAll;
+            if(!string.IsNullOrEmpty(toID))
+                cboTo.SelectedItem = vendorsAll.Find(q => q.VendorID == toID);
         }
 
         private async void cboTo_SelectedIndexChanged(object sender, EventArgs e)
